@@ -1,6 +1,7 @@
-# Natural Language Processing Tutorial - Sentiment Analysis
+# Natural Language Processing - Sentiment Analysis
 
 ## Outline
+
 - [Objective](#objective)
 - [Prerequisites](#prerequisites)
 - [Task 1: Launch Sentiment Analysis Experiment](#task-1-launch-sentiment-analysis-experiment)
