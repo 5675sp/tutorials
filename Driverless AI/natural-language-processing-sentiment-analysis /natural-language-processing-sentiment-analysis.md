@@ -17,22 +17,29 @@
 
 ## Objective
 
-Sentiment analysis, also known as opinion mining is a subfield of Natural Language Processing (NLP) that tries to identify and extract opinions from a given text. The aim of sentiment analysis is to gauge the attitudes, sentiments, and emotions of a speaker/writer based on the computational treatment of subjectivity in a text. This can be in the form of like/dislike binary rating or in the form of numerical ratings from 1 to 5.
+Sentiment analysis, also known as opinion mining, is a subfield of Natural Language Processing (NLP) that tries to identify and extract opinions from a given text. Sentiment analysis aims to gauge the attitudes, sentiments, and emotions of a speaker/writer based on the computational treatment of subjectivity in a text. This can be in the form of like/dislike binary rating or in the form of numerical ratings from 1 to 5.
 
-![sentiment-analysis](assets/sentiment-analysis.jpg)
 
-[Image source]( https://www.kdnuggets.com/images/sentiment-fig-1-689.jpg)
+<p align="center"> 
+    <img src='assets/sentiment-analysis.jpg'></img>    
+    <p align="center">Figure 1. Sentiment</p>
+</p>
+
 
 Sentiment Analysis is an important sub-field of NLP. It can help to create targeted brand messages and assist a company in understanding consumer’s preferences. These insights could be critical for a company to increase its reach and influence across a range of sectors.
 
-Here are some of the uses of Sentiment analysis from a business perspective:
+Here are some of the uses of Sentiment Analysis from a business perspective:
 
 ![sentiment-analysis-business-uses](assets/sentiment-analysis-business-uses.jpg)
 
 
-In this tutorial, you will learn how to apply automatic machine learning to build a model to classify customer reviews. You will learn some core NLP concepts and then load a dataset, explore it, run an experiment to build a model and explore the results.
+In this tutorial, we will learn some core NLP concepts that will enable us to build and understand an NLP model capable of classifying fine food reviews from Amazon customers. 
 
-**Note**: It is highly recommended that you go over the entire tutorial before starting the experiment. This would help you become more familiar with the content and aid you while you are performing the experiment..
+**Note**: It is highly recommended that you go over the entire tutorial before starting the experiment. 
+
+### References 
+
+- [Figure 1. Sentiment](https://www.kdnuggets.com/images/sentiment-fig-1-689.jpg)
  
 ## Prerequisites
 
@@ -40,10 +47,8 @@ You will need the following to be able to do this tutorial:
 
 - Basic knowledge of Machine Learning and Statistics  
 - A hands on knowledge of Driverless AI environment
-- Basic knowledge of Driverless AI or doing the [Automatic Machine Learning Introduction with Drivereless AI](https://training.h2o.ai/products/tutorial-1a-automatic-machine-learning-introduction-with-driverless-ai) 
-    
+- Basic knowledge of Driverless AI or completion of the following tutorial: [Automatic Machine Learning Introduction with Drivereless AI](https://training.h2o.ai/products/tutorial-1a-automatic-machine-learning-introduction-with-driverless-ai) 
 - A **Two-Hour Test Drive session** : Test Drive is H2O.ai's Driverless AI on the AWS Cloud. No need to download software. Explore all the features and benefits of the H2O Automatic Learning Platform.
-
   - Need a **Two-Hour Test Drive** session? Follow the instructions on [this quick tutorial](https://training.h2o.ai/products/tutorial-0-getting-started-with-driverless-ai-test-drive) to get a Test Drive session started. 
   
 **Note:  Aquarium’s Driverless AI Test Drive lab has a license key built-in, so you don’t need to request one to use it. Each Driverless AI Test Drive instance will be available to you for two hours, after which it will terminate. No work will be saved. If you need more time to further explore Driverless AI, you can always launch another Test Drive instance or reach out to our sales team via the [contact us form](https://www.h2o.ai/company/contact/).**
@@ -58,33 +63,32 @@ Our aim is to study these reviews and try and predict whether a review is positi
 
 The data has been originally hosted by SNAP ([Stanford Large Network Dataset Collection](http://snap.stanford.edu/data/index.html)), a collection of more than 50 large network datasets from tens of thousands of nodes and edges to tens of millions of nodes and edges. In includes social networks, web graphs, road networks, internet networks, citation networks, collaboration networks, and communication networks [2].
 
-The dataset provided is a CSV file containing 568,454 rows and a total of 10 features (columns).
+The dataset provided is a CSV file containing 568,454 rows and a total of 11 features (columns).
  
 ### Dataset Overview
 
-If you are using **Aquarium** as the environment, then the lab **Driverless AI Test Drive** has the Amazon fine review dataset already pre-loaded with separate training and test datasets. The datasets can be located on the Datasets Overview page. However, you can also upload the datasets externally. To learn more about how to add the two datasets from the Driverless AI file system then see [Appendix A: Add the Datasets](#task-8-appendix-a-add-the-datasets).
+In **Aquarium**, the **Driverless AI Test Drive** instance has the **Amazon fine food review** dataset already and has been split for this tutorials experiment. The split resulted in a train and test dataset. The datasets can be located on the Datasets overview page. However, you can also upload the datasets externally. To learn more about how to add the dataset and how to split it please consult [Appendix A: Add the Dataset](#task-8-appendix-a-add-the-datasets).
 
-On clicking the highlighted `Start lab` button , you will be taken  to a Driverless AI platform with several pre-loaded data sets and pre-run visualizations, models, interpretations, and deployments. Here  you will have access to both the training and testing set for Amazon fine food reviews.
 
-1\. Verify that both datasets are on the Datasets Overview, your screen should look similar to the page below:
+1\. In the **Datasets** overview page, observe the two datasets we will use for this tutorial:
 
 ![datasets-overview](assets/datasets-overview.jpg)
 
-2\. Click on the `AmazonFineFood_train` file and then on Details.
+2\. Click the following dataset and right after select the **Details** option: ```AmazonFineFoodReviews_train...```:
 
 ![dataset-details](assets/dataset-details.jpg)
 
-3\. Let’s take a quick look at the columns of the training set:
+3\. Let’s take a quick look at the columns of the training dataset:
 
 ![dataset-columns-info](assets/dataset-columns-info.jpg)
 
 *Things to Note:*
 
-The dataset consists of 10 columns which are as follows:
+The dataset consists of 11 columns which are as follows:
 
 1.  **UserId** - Unique identifier for the user
 2. **ProductId** - Unique identifier for the product
-3.  **Id** - Row Id
+3.  **Id** - Review ID
 4.  **Summary** - Brief summary of the review
 5.  **Score** - Rating between 1 and 5
 6.  **HelpfulnessDenominator** - Number of users who indicated whether they found the review helpful or not
@@ -97,30 +101,32 @@ The dataset consists of 10 columns which are as follows:
 10. **Description** - Text of the review
 11.  **Positive Review** - Whether the review is Positive or Negative
 
-5\. Return to the **Datasets** Page
+5\. Return to the Datasets page.
 
 ### Launch Experiment
 
+The experiment has already been pre-built, given that it takes more than two hours for the experiment to complete. Above you will be guided on how to access it right before we begin our analysis. For now, we will walk through the process of how the experiment was constructed. For now, consider the above if you were to build the experiment/model from scratch: 
 
-1\. On the Datasets page click on the `AmazonFineFoodReviews-train-26k.csv` dataset and select Predict
+
+1\. In the **Datasets** page, click on the following dataset, and right after selecting the **Predict** option: ```AmazonFineFoodReviews-train-26k.csv```:
 
 ![launch-experiment](assets/launch-experiment.jpg)
 
-2\. As soon as you select the `Predict` option, you are asked for a tour of Driverless AI environment. Skip it for now by clicking `Not Now`. However, it is recommended to get the intuitive tour incase you are new to the environment. An image similar to the one below should appear. 
+2\. As soon as you select the **Predict** option, you are asked if you want to take a tour of the Driverless AI environment. Skip it for now by clicking **Not Now**. The following will appear: 
 
 ![initial-experiment-overview](assets/initial-experiment-overview.jpg)
 
-3\. Next, you will need to feed in the following information into Driverless AI :
+3\. Next, you will need to feed in the following information into Driverless AI:
 
 ![name-experiment](assets/name-experiment.jpg)
 
- 1. **Display Name** - Give a name to your experiment. You can choose according to your choice but it is recommended to choose a name that highlights the purpose of the experiment. Let's name our current experiment as **Sentiment Analysis**.
+ 1. **Display Name** - Let's name our current experiment **Sentiment Analysis**.
 
- 2. **Target Column** -  The *Target column* contains the value that we intend to predict through the experiment. Click on the `Select Target Column` tab and select **Positive Review** as the target column. The aim of the experiment is to try to predict whether a fiven review is positive or negative, hence the Positive Review is selected as the target column. The column has only two values i.e Positive and Negative.
+ 2. **Target Column** -  Select **Positive Review** as the target column. The aim of the experiment is to try to predict whether a given review is positive or negative, hence the Positive Review is selected as the target column. The column has only two values i.e Positive and Negative:
 
      ![target-column](assets/target-column.jpg)
 
- 3. **Dropped Columns** - The *Dropped Columns* feature enable us to  drop column(s) from your dataset that you don't want  to use in the experiment.For this experiment we shall only use the text columns so we shall drop all columns that are not in text format. 
+ 3. **Dropped Columns** - For this experiment, only text columns are selected, and therefore we shall only use the text columns, so we drop all columns that are not in a text format. 
 
 
      ![dropped-columns](assets/dropped-columns.jpg)
