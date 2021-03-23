@@ -101,7 +101,7 @@ The dataset consists of 10 columns which are as follows:
 ### Launch Experiment
 
 
-1\. On the Datasets page click on the `**AmazonFineFoodReviews-train-26k.csv**` dataset and select Predict
+1\. On the Datasets page click on the `AmazonFineFoodReviews-train-26k.csv` dataset and select Predict
 
 ![launch-experiment](assets/launch-experiment.jpg)
 
@@ -210,15 +210,15 @@ Specify whether to use Word-based BiG-RU TensorFlow models for NLP. This option 
 
 Specify whether to use Character-level CNN TensorFlow models for NLP. This option is ignored if TensorFlow is disabled. We recommend that you disable this option on systems that do not use GPUs.
 
-- **PyTorch Models for NLP (Experimental)**
+- **PyTorch Models for NLP**
 
-Specify whether to enable pre-trained PyTorch models and fine-tune them for NLP tasks. This is set to Auto by default. You need to set this to On if you want to use the PyTorch models like BERT for feature engineering or for modeling. We recommend that you use GPUs to speed up execution when this option is used.
+Specify whether to enable pre-trained PyTorch models and fine-tune them for NLP tasks. This is set to Auto by default. You need to set this to On if you want to use the PyTorch models like BERT for feature engineering or for modeling. We recommend that you use GPUs to speed up execution when this option is used. Please note that for this lab, we are not going to enable this setting.
 
 ![nlp-expert-settings](assets/nlp-expert-settings.jpg)
 
-- **Select Which Pretrained PyTorch NLP Models to Use**
+- **Select Which Pretrained PyTorch NLP Models to Use(Optional)**
 
-Click on the `Select Which Pretrained PyTorch NLP Models to Use` and specify one or more pretrained PyTorch NLP models to use from the following list:
+This setting is to be used if you enable the Pytorch Models. Click on the `Select Which Pretrained PyTorch NLP Models to Use` and specify one or more pretrained PyTorch NLP models to use from the following list:
 
 ![pytorch-pretrained-models](assets/pytorch-pretrained-models.jpg)
 
@@ -231,7 +231,7 @@ Click on the `Select Which Pretrained PyTorch NLP Models to Use` and specify one
 
 Additionally, there are three more buttons located beneath the experimental settings knob which stand for the following:
 
--   **Classification or Regressio**: Driverless AI automatically determines the problem type based on the response column. Though not recommended, you can override this setting by clicking this button. Our current problem is that of Classification.
+-   **Classification or Regression**: Driverless AI automatically determines the problem type based on the response column. Though not recommended, you can override this setting by clicking this button. Our current problem is that of Classification.
     
 -   **Reproducible**: This button allows you to build an experiment with a random seed and get reproducible results. If this is disabled (default), the results will vary between runs.
     
@@ -426,7 +426,9 @@ Once the features have been extracted, they can then be used for training a clas
 
 ## Task 4: Driverless AI NLP Recipe
 
-Text data can contain critical information to inform better predictions. H2O Driverless AI automatically converts text strings into features using powerful techniques like TFIDF, CNN, and GRU. Driverless AI version 1.9 introduces support for PyTorch Transformer Architectures (for example, BERT) that can be used for Feature Engineering or as Modeling Algorithms. The Driverless AI platform has the ability to support both standalone text and text with other columns as predictive features. In particular, the following NLP recipes are available for a given text column:
+Text data can contain critical information to inform better predictions. Driverless AI automatically converts text strings into features using powerful techniques like TFIDF, CNN, and GRU. Driverless AI now also includes state-of-the-art PyTorch BERT transformers. With advanced NLP techniques, Driverless AI can also process larger text blocks and build models using all available data and to solve business problems like sentiment analysis, document classification, and content tagging.
+
+The Driverless AI platform has the ability to support both standalone text and text with other columns as predictive features. In particular, the following NLP recipes are available for a given text column:
 
 ![driverless-nlp-recipe](assets/driverless-nlp-recipe.jpg)
 
@@ -455,23 +457,23 @@ In our NLP recipe, we also have linear models on top of n-gram TFIDF / frequency
 
 Driverless AI NLP recipe makes use of the power of word embeddings where words or phrases from the vocabulary are mapped to vectors of real numbers.
 
-- **Bi-direction GRU models on Word Embeddings**
+- **Bi-direction GRU models on Word Embeddings(TensorFlow)**
 
 A Bi-directional GRU model is like putting two independent RNN models in one. Taking note of accuracy as well as speed in our experiments, we have decided to take advantage of high speed and almost similar accuracies of GRU architecture compared to its counterpart LSTM.
 
 - **Convolution neural network models on:**
 
-     - **Word Embeddings**
+     - **Word embeddings followed by CNN model (TensorFlow)**
 
      In Driverless AI, we pass word embeddings as input to CNN models, get cross-validated predictions from it and use them as a new set of features.
 
-     - **Character embeddings**
+     - **Character embeddings followed by CNN model (TensorFlow)**
 
      Natural language processing is complex as the language is hard to understand given small data and different languages. Targeting languages like Japanese, Chinese where characters play a major role, we have character level embeddings in our recipe as well.
 
      In character embeddings, each character gets represented in the form of vectors rather than words. Driverless AI uses character level embeddings as input to CNN models and later extracts class probabilities to feed as features for downstream models: this gives the ability to work in languages other than English. In languages like Japanese and Chinese, where there is no concept of words, character embeddings will be useful.
 
-- **BERT/DistilBERT Models for Feature Engineering:**
+- **BERT/DistilBERT based embeddings for Feature Engineering (PyTorch):**
 
 BERT and [DistilBERT](https://arxiv.org/abs/1910.01108) models can be used for generating embeddings for any text columns. These pre-trained models are used to get embeddings for the text followed by Linear/Logistic Regression to generate features that can then be used for any downstream models in Driverless AI.
 
@@ -616,7 +618,7 @@ H2O has built and open-sourced several recipes[2] which can be used as templates
 4\. Alternately, you can also upload a recipe via URL. Click on the LOAD CUSTOM RECIPE FROM URL tab and enter the raw Github URL of the recipe. Click save when done
     
 ```
-https://github.com/h2oai/driverlessai-recipes/blob/rel-1.9.0/transformers/nlp/text_sentiment_transformer.py
+https://raw.githubusercontent.com/h2oai/driverlessai-recipes/rel-1.9.1/transformers/nlp/text_sentiment_transformer.py
 ```
   
 ![uploading-recipe-from-url](assets/uploading-recipe-from-url.jpg)
