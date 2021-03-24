@@ -5,7 +5,7 @@
 - [Objective](#objective)
 - [Prerequisites](#prerequisites)
 - [Task 1: Launch Sentiment Analysis Experiment](#task-1-launch-sentiment-analysis-experiment)
-- [Task 2: Expert Settings](#task-2-expert-settings)
+- [Task 2: Training Settings](#task-2-training-settings)
 - [Task 3: Natural Language Processing Concepts](#task-3-natural-language-processing-concepts)
 - [Task 4: Driverless AI NLP Recipe](#task-4-driverless-ai-nlp-recipe)
 - [Task 5: Experiment Results Summary](#task-5-experiment-results-summary)
@@ -66,7 +66,7 @@ Our aim is to study these reviews and try and predict whether a review is positi
 
 The data has been originally hosted by SNAP ([Stanford Large Network Dataset Collection](http://snap.stanford.edu/data/index.html)), a collection of more than 50 large network datasets from tens of thousands of nodes and edges to tens of millions of nodes and edges. In includes social networks, web graphs, road networks, internet networks, citation networks, collaboration networks, and communication networks [2].
 
-The dataset provided is a CSV file containing 568,454 rows and a total of 11 features (columns).
+
  
 ### Dataset Overview
 
@@ -89,20 +89,22 @@ In **Aquarium**, the **Driverless AI Test Drive** instance has the **Amazon fine
 
 The dataset consists of 11 columns which are as follows:
 
-1.  **UserId** - Unique identifier for the user
-2. **ProductId** - Unique identifier for the product
-3.  **Id** - Review ID
-4.  **Summary** - Brief summary of the review
-5.  **Score** - Rating between 1 and 5
-6.  **HelpfulnessDenominator** - Number of users who indicated whether they found the review helpful or not
-7.  **ProfileName** - Profile name of the user          
+   
+
+     a. UserId - unique identifier for the user
+     b. ProductId - unique identifier for the product
+     c. Id - review ID
+     d. Summary - brief summary of the review
+     e. Score - rating between 1 and 5
+     f. HelpfulnessDenominator - number of users who indicated whether they found the review helpful or not
+     g. ProfileName - profile name of the user          
 
 4\. Continue scrolling the current page to see more columns (image is not included)
 
-8.  **HelpfulnessNumerator** - Number of users who found the review helpful 
-9.  **Time** - Timestamp for the review 
-10. **Description** - Text of the review
-11.  **Positive Review** - Whether the review is Positive or Negative
+     h. HelpfulnessNumerator - number of users who found the review helpful 
+     i. Time - timestamp for the review 
+     j. Description - text of the review
+     k. Positive Review - whether the review is Positive or Negative
 
 5\. Return to the Datasets page.
 
@@ -161,14 +163,14 @@ In **Task 2**, we will continue editing our experiment settings.
 - [NLP in Driverless AI documentation](http://docs.h2o.ai/driverless-ai/latest-stable/docs/userguide/nlp.html)
 
 
-## Task 2: Expert Settings
+## Task 2: Training Settings
 
-This task deals with settings that will enable us to run an effective NLP experiment. The following settings are what needs to be updated for a typical NLP experiment:
+This task deals with settings that will enable us to run an effective NLP experiment. Let us know understand such settings and let's adjust them accurately: 
 
 ![experiment-settings](assets/experiment-settings.jpg)
 
-1. **Accuracy** - accuracy stands for relative accuracy, i.e., higher values should lead to higher confidence in model performance (accuracy): the accuracy setting impacts which algorithms are considered, level of assembling, and types of feature engineering. 
-2. **Time** - time is the relative time for completing the experiment. Higher values will lead to experiments taking longer. 
+> <p style="color:black">a.  <b>Accuracy</b> - accuracy stands for relative accuracy, i.e., higher values should lead to higher confidence in model performance (accuracy): the accuracy setting impacts which algorithms are considered, level of assembling, and types of feature engineering.</p>
+> <p style="color:black">b. <b>Time</b> - time is the relative time for completing the experiment. Higher values will lead to experiments taking longer.</p> 
 3. **Interpretability** - interpretability is the degree to which a human can understand the cause of the decision. It controls the complexity of the models and features allowed within the experiments (e.g., higher interpretability will generally block complicated features, feature engineering, and models).
 4. **Scorer** - the scorer is the metric used to evaluate the machine learning algorithm. The scorer used for this experiment is the LogLoss or logarithmic loss metric, which is used to evaluate the performance of a binomial or multinomial classifier. Unlike AUC, which looks at how well a model can classify a binary target, log loss evaluates how close a model’s predicted values (uncalibrated probability estimates) are to the actual target value. The lower the Logloss value, the better the model can predict the sentiment. 
 5. **Expert Settings** - several configurable settings are available for NLP experiments in Driverless AI, which can be tuned according to the experiment type. To tune the NLP settings, click on the **Expert Settings**, and navigate to the NLP tab:
@@ -177,25 +179,25 @@ This task deals with settings that will enable us to run an effective NLP experi
 
      - In the NLP tab, you can enable the following settings for your particular NLP experiment: 
 
-          - **Word-Based CNN TensorFlow Models for NLP**
+          - **Word-Based CNN TensorFlow Models for NLP**:
 
-               Specify whether to use Word-based CNN TensorFlow models for NLP. This option is ignored if TensorFlow is disabled. We recommend that you disable this option on systems that do not use GPUs.
+               Specify whether to use Word-based CNN(Convolutional Neural Network) TensorFlow models for NLP. This option is ignored if TensorFlow is disabled. We recommend that you disable this option on systems that do not use GPUs.
 
-          - **Word-Based BiGRU TensorFlow Models for NLP**
+          - **Word-Based BiGRU TensorFlow Models for NLP**:
 
                Specify whether to use Word-based BiG-RU TensorFlow models for NLP. This option is ignored if TensorFlow is disabled. We recommend that you disable this option on systems that do not use GPUs.
 
-          - **Character-Based CNN TensorFlow Models for NLP**
+          - **Character-Based CNN TensorFlow Models for NLP**:
 
                Specify whether to use Character-level CNN TensorFlow models for NLP. This option is ignored if TensorFlow is disabled. We recommend that you disable this option on systems that do not use GPUs.
 
-          - **PyTorch Models for NLP**
+          - **PyTorch Models for NLP(Experimental)**:
 
-               Specify whether to enable pre-trained PyTorch models and fine-tune them for NLP tasks. This is set to Auto by default. You need to set this to On if you want to use the PyTorch models like BERT for feature engineering or for modeling. We recommend that you use GPUs to speed up execution when this option is used. Please note that for this lab, we are not going to enable this setting.
+               Specify whether to enable pre-trained PyTorch models and fine-tune them for NLP tasks. This is set to Auto by default. You need to set this to On if you want to use the PyTorch models like BERT for feature engineering or for modeling. We recommend that you use GPUs to speed up execution when this option is used. 
 
-          - **Select Which Pretrained PyTorch NLP Models to Use(Optional)**
+          - **Select which pretrained PyTorch NLP Model(s) to use**:
 
-               This setting is to be used if you enable the Pytorch Models. Click on the `Select Which Pretrained PyTorch NLP Models to Use` and specify one or more pretrained PyTorch NLP models to use from the following list:
+               This setting is to be used if you enable the Pytorch Models. Click on the **Select which pretrained PyTorch NLP Model(s) to use** and specify one or more pretrained PyTorch NLP models to use from the following list:
 
                ![pytorch-pretrained-models](assets/pytorch-pretrained-models.jpg)
 
@@ -204,23 +206,19 @@ This task deals with settings that will enable us to run an effective NLP experi
                - This setting requires an Internet connection.
                - Using BERT-like models may result in a longer experiment completion time.
 
+6. Additionally, there are three more buttons located beneath the experimental settings knob which stand for the following:
 
-          Additionally, there are three more buttons located beneath the experimental settings knob which stand for the following:
-
-          -   **Classification or Regression**: Driverless AI automatically determines the problem type based on the response column. Though not recommended, you can override this setting by clicking this button. Our current problem is that of Classification.
+     -   **Classification or Regression**: Driverless AI automatically determines the problem type based on the response column. Though not recommended, you can override this setting by clicking this button. Our current problem is that of Classification.
     
-          -  **Reproducible**: This button allows you to build an experiment with a random seed and get reproducible results. If this is disabled (default), the results will vary between runs.
+     -  **Reproducible**: This button allows you to build an experiment with a random seed and get reproducible results. If this is disabled (default), the results will vary between runs.
     
-          -   **Enable GPUs**: Specify whether to enable GPUs. (Note that this option is ignored on CPU-only systems.)
+     -   **Enable GPUs**: Specify whether to enable GPUs. (Note that this option is ignored on CPU-only systems.)
     
 Update the following experiment settings so that they match the image below, then select Launch Experiment. This configuration is selected to generate a model quickly with a sufficient level of accuracy in the H2O Driverless Test Drive environment.
 
 -   **Accuracy**: 5
-    
 -   **Time**: 2
-    
 -   **Interpretability**: 5
-    
 -   **Scorer**: LogLoss
 
 ![final-experiment-launch](assets/final-experiment-launch.jpg)
