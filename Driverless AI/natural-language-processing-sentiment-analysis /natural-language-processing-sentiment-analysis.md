@@ -5,7 +5,7 @@
 - [Objective](#objective)
 - [Prerequisites](#prerequisites)
 - [Task 1: Launch Sentiment Analysis Experiment](#task-1-launch-sentiment-analysis-experiment)
-- [Task 2: Sentiment Analysis Experiment Settings](#task-2-sentiment-analysis-experiment-settings)
+- [Task 2: Expert Settings](#task-2-expert-settings)
 - [Task 3: Natural Language Processing Concepts](#task-3-natural-language-processing-concepts)
 - [Task 4: Driverless AI NLP Recipe](#task-4-driverless-ai-nlp-recipe)
 - [Task 5: Experiment Results Summary](#task-5-experiment-results-summary)
@@ -30,10 +30,13 @@ Sentiment Analysis is an important sub-field of NLP. It can help to create targe
 
 Here are some of the uses of Sentiment Analysis from a business perspective:
 
-![sentiment-analysis-business-uses](assets/sentiment-analysis-business-uses.jpg)
+- Provide audience insight 
+- Support customer Service 
+- Augments good PR practices 
+- Drive proactive business solutions 
+- Measure the ROI of the marketing campaign
 
-
-In this tutorial, we will learn some core NLP concepts that will enable us to build and understand an NLP model capable of classifying fine food reviews from Amazon customers. 
+In this tutorial, we will learn some core NLP concepts that will enable us to build and understand an NLP model capable of classifying fine food reviews from Amazon customers. In other words, we will conduct a **Sensitivity Analysis** on the various customer reviews. 
 
 **Note**: It is highly recommended that you go over the entire tutorial before starting the experiment. 
 
@@ -105,10 +108,10 @@ The dataset consists of 11 columns which are as follows:
 
 ### Launch Experiment
 
-The experiment has already been pre-built, given that it takes more than two hours for the experiment to complete. Above you will be guided on how to access it right before we begin our analysis. For now, we will walk through the process of how the experiment was constructed. For now, consider the above if you were to build the experiment/model from scratch: 
+The experiment has already been pre-built, given that it takes more than two hours for the experiment to complete. Below you will be guided on how to access the pre-built experiment right before we start our analysis on the built NLP model's effectiveness. For now, consider the above if you were to build the experiment/model from scratch: 
 
 
-1\. In the **Datasets** page, click on the following dataset, and right after selecting the **Predict** option: ```AmazonFineFoodReviews-train-26k.csv```:
+1\. In the **Datasets** page, click on the following dataset, and right after select the **Predict** option: ```AmazonFineFoodReviews-train-26k.csv```:
 
 ![launch-experiment](assets/launch-experiment.jpg)
 
@@ -122,7 +125,7 @@ The experiment has already been pre-built, given that it takes more than two hou
 
  1. **Display Name** - Let's name our current experiment **Sentiment Analysis**.
 
- 2. **Target Column** -  Select **Positive Review** as the target column. The aim of the experiment is to try to predict whether a given review is positive or negative, hence the Positive Review is selected as the target column. The column has only two values i.e Positive and Negative:
+ 2. **Target Column** -  Select **PositiveReview** as the target column. The aim of the experiment is to try to predict whether a given review is positive or negative, hence the **PositiveReview** is selected as the target column. The column has only two values i.e Positive and Negative:
 
      ![target-column](assets/target-column.jpg)
 
@@ -131,9 +134,9 @@ The experiment has already been pre-built, given that it takes more than two hou
 
      ![dropped-columns](assets/dropped-columns.jpg)
      
-     However, please note that if you decide to keep the non-text columns, the NLP algorithms will still work on the non-text columns.
+     - However, please note that if you decide to keep the non-text columns, the NLP algorithms will still work on the non-text columns.
 
- 4. **Test Dataset** -  The *Test dataset* is a dataset used to provide an unbiased evaluation of a _final_ model fit on the training dataset. It is not used during training of the model and results are available at the end of the experiment. Select the `AmazonFineFoodReviews-test-26k.csv` dataset as follows:
+ 4. **Test Dataset** -  The *Test dataset* is a dataset used to provide an unbiased evaluation of a _final_ model fit on the training dataset. It is not used during training of the model. Therefore, select the following dataset for the test dataset option: ```AmazonFineFoodReviews-test-26k.csv```: 
 
      ![test-dataset](assets/test-dataset.jpg)
 
@@ -141,7 +144,7 @@ The experiment has already been pre-built, given that it takes more than two hou
 
      ![final-experiment-screen](assets/final-experiment-screen.jpg)
 
-In **Task 2**, we shall explore and update the Experiment Settings.
+In **Task 2**, we will continue editing our experiment settings. 
 
 
 ### Acknowledgement
@@ -150,99 +153,65 @@ In **Task 2**, we shall explore and update the Experiment Settings.
 
 ### References
 
-[1] [Amazon Fine Food Reviews - Analyze ~500,000 food reviews from Amazon](https://www.kaggle.com/snap/amazon-fine-food-reviews)
-
-[2] [Stanford Network Analysis Project](https://www.kaggle.com/snap)
+- [1] [Amazon Fine Food Reviews - Analyze ~500,000 food reviews from Amazon](https://www.kaggle.com/snap/amazon-fine-food-reviews)
+- [2] [Stanford Network Analysis Project](https://www.kaggle.com/snap)
 
 ### Deeper Dive and Resources
 
 - [NLP in Driverless AI documentation](http://docs.h2o.ai/driverless-ai/latest-stable/docs/userguide/nlp.html)
 
 
-## Task 2: Sentiment Analysis Experiment Settings
+## Task 2: Expert Settings
 
-Once the data has been imported into Driverless AI, there are certain experiment settings that need to be updated. This section deals with experiment settings with respect to NLP tasks. However, if you wish to learn more about the meaning and various experimental settings in general, It is recommended to go through the following tutorial:
-
--   [Machine Learning Experiment Scoring and Analysis Tutorial - Financial Focus](https://training.h2o.ai/products/tutorial-1b-machine-learning-experiment-scoring-and-analysis-tutorial-financial-focus)
-    
-Experiment Settings describe the Accuracy, Time and Interpretability of a specific experiment. The knobs on the experiment settings are adjustable. As values change, the meaning of the settings on the left-bottom page change.
-
-Here are the following settings that need to be updated for a typical NLP experiment.
+This task deals with settings that will enable us to run an effective NLP experiment. The following settings are what needs to be updated for a typical NLP experiment:
 
 ![experiment-settings](assets/experiment-settings.jpg)
 
-1. Accuracy
+1. **Accuracy** - accuracy stands for relative accuracy, i.e., higher values should lead to higher confidence in model performance (accuracy): the accuracy setting impacts which algorithms are considered, level of assembling, and types of feature engineering. 
+2. **Time** - time is the relative time for completing the experiment. Higher values will lead to experiments taking longer. 
+3. **Interpretability** - interpretability is the degree to which a human can understand the cause of the decision. It controls the complexity of the models and features allowed within the experiments (e.g., higher interpretability will generally block complicated features, feature engineering, and models).
+4. **Scorer** - the scorer is the metric used to evaluate the machine learning algorithm. The scorer used for this experiment is the LogLoss or logarithmic loss metric, which is used to evaluate the performance of a binomial or multinomial classifier. Unlike AUC, which looks at how well a model can classify a binary target, log loss evaluates how close a model’s predicted values (uncalibrated probability estimates) are to the actual target value. The lower the Logloss value, the better the model can predict the sentiment. 
+5. **Expert Settings** - several configurable settings are available for NLP experiments in Driverless AI, which can be tuned according to the experiment type. To tune the NLP settings, click on the **Expert Settings**, and navigate to the NLP tab:
 
-2. Time
+     ![nlp-expert-settings](assets/nlp-expert-settings.jpg)
 
-3. Interpretability
+     - In the NLP tab, you can enable the following settings for your particular NLP experiment: 
 
-4. Scorer
+          - **Word-Based CNN TensorFlow Models for NLP**
 
-5. Expert Settings
+               Specify whether to use Word-based CNN TensorFlow models for NLP. This option is ignored if TensorFlow is disabled. We recommend that you disable this option on systems that do not use GPUs.
+
+          - **Word-Based BiGRU TensorFlow Models for NLP**
+
+               Specify whether to use Word-based BiG-RU TensorFlow models for NLP. This option is ignored if TensorFlow is disabled. We recommend that you disable this option on systems that do not use GPUs.
+
+          - **Character-Based CNN TensorFlow Models for NLP**
+
+               Specify whether to use Character-level CNN TensorFlow models for NLP. This option is ignored if TensorFlow is disabled. We recommend that you disable this option on systems that do not use GPUs.
+
+          - **PyTorch Models for NLP**
+
+               Specify whether to enable pre-trained PyTorch models and fine-tune them for NLP tasks. This is set to Auto by default. You need to set this to On if you want to use the PyTorch models like BERT for feature engineering or for modeling. We recommend that you use GPUs to speed up execution when this option is used. Please note that for this lab, we are not going to enable this setting.
+
+          - **Select Which Pretrained PyTorch NLP Models to Use(Optional)**
+
+               This setting is to be used if you enable the Pytorch Models. Click on the `Select Which Pretrained PyTorch NLP Models to Use` and specify one or more pretrained PyTorch NLP models to use from the following list:
+
+               ![pytorch-pretrained-models](assets/pytorch-pretrained-models.jpg)
+
+               **Notes:**
+
+               - This setting requires an Internet connection.
+               - Using BERT-like models may result in a longer experiment completion time.
+
+
+          Additionally, there are three more buttons located beneath the experimental settings knob which stand for the following:
+
+          -   **Classification or Regression**: Driverless AI automatically determines the problem type based on the response column. Though not recommended, you can override this setting by clicking this button. Our current problem is that of Classification.
     
-### Accuracy
-
-Accuracy stands for relative accuracy i.e higher values, should lead to higher confidence in model performance (accuracy). The accuracy setting impacts which algorithms are considered, level of assembling and types of feature engineering,
-
-### Time
-
-Time is the Relative time for completing the experiment. Higher values will take longer for the experiment to complete.
-
-### Interpretability
-
-Interpretability is the degree to which a human can understand the cause of the decision. It controls the complexity of the models and features allowed within the experiments (e.g. higher interpretability will generally block complicated features, feature engineering, and models).
-
-### Scorer
-
-Scorer is the metric used to Evaluate the machine learning algorithm. The scorer used for this experiment is the LogLoss or logarithmic loss metric which is used to used to evaluate the performance of a binomial or multinomial classifier. Unlike AUC which looks at how well a model can classify a binary target, logloss evaluates how close a model’s predicted values (uncalibrated probability estimates) are to the actual target value. The lower the Logloss value the better the better the model can predict the sentiment.
-
-###  Expert Settings
-
-Several configurable settings are available for NLP in Driverless AI, which can be tuned according to the experiment type. To tune the NLP settings, click on the Expert Settings, and navigate to the NLP option:
-
-![expert-settings-overview](assets/expert-settings-overview.jpg)
-
-Click on the NLP tab to enable NLP specific settings as shown below. This option allows you to enable the following options for NLP experiments.
-
-- **Word-Based CNN TensorFlow Models for NLP**
-
-Specify whether to use Word-based CNN TensorFlow models for NLP. This option is ignored if TensorFlow is disabled. We recommend that you disable this option on systems that do not use GPUs.
-
-- **Word-Based BiGRU TensorFlow Models for NLP**
-
-Specify whether to use Word-based BiG-RU TensorFlow models for NLP. This option is ignored if TensorFlow is disabled. We recommend that you disable this option on systems that do not use GPUs.
-
-- **Character-Based CNN TensorFlow Models for NLP**
-
-Specify whether to use Character-level CNN TensorFlow models for NLP. This option is ignored if TensorFlow is disabled. We recommend that you disable this option on systems that do not use GPUs.
-
-- **PyTorch Models for NLP**
-
-Specify whether to enable pre-trained PyTorch models and fine-tune them for NLP tasks. This is set to Auto by default. You need to set this to On if you want to use the PyTorch models like BERT for feature engineering or for modeling. We recommend that you use GPUs to speed up execution when this option is used. Please note that for this lab, we are not going to enable this setting.
-
-![nlp-expert-settings](assets/nlp-expert-settings.jpg)
-
-- **Select Which Pretrained PyTorch NLP Models to Use(Optional)**
-
-This setting is to be used if you enable the Pytorch Models. Click on the `Select Which Pretrained PyTorch NLP Models to Use` and specify one or more pretrained PyTorch NLP models to use from the following list:
-
-![pytorch-pretrained-models](assets/pytorch-pretrained-models.jpg)
-
-####  Notes:
-
-* This setting requires an Internet connection.
-
-* Using BERT-like models may result in a longer experiment completion time.
-
-
-Additionally, there are three more buttons located beneath the experimental settings knob which stand for the following:
-
--   **Classification or Regression**: Driverless AI automatically determines the problem type based on the response column. Though not recommended, you can override this setting by clicking this button. Our current problem is that of Classification.
+          -  **Reproducible**: This button allows you to build an experiment with a random seed and get reproducible results. If this is disabled (default), the results will vary between runs.
     
--   **Reproducible**: This button allows you to build an experiment with a random seed and get reproducible results. If this is disabled (default), the results will vary between runs.
-    
--   **Enable GPUs**: Specify whether to enable GPUs. (Note that this option is ignored on CPU-only systems.)
+          -   **Enable GPUs**: Specify whether to enable GPUs. (Note that this option is ignored on CPU-only systems.)
     
 Update the following experiment settings so that they match the image below, then select Launch Experiment. This configuration is selected to generate a model quickly with a sufficient level of accuracy in the H2O Driverless Test Drive environment.
 
