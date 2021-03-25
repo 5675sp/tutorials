@@ -102,7 +102,13 @@ The dataset consists of 11 columns which are as follows:
 > <p style="color:black">h. <b>HelpfulnessNumerator</b> - number of users who found the review helpful</p> 
 > <p style="color:black">i. <b>Time</b> - timestamp for the review</p> 
 > <p style="color:black">j. <b>Description</b> - text of the review</p>
-> <p style="color:black">k. <b>Positive Review</b> - whether the review is Positiveor Negative
+> <p style="color:black">k. <b>Positive Review</b> - whether the review is Positiveor Negative</p>
+
+
+
+
+
+
 
 
 5\. Return to the Datasets page.
@@ -123,6 +129,16 @@ The experiment has already been pre-built, given that it takes more than two hou
 3\. Next, you will need to feed in the following information into Driverless AI:
 
 ![name-experiment](assets/name-experiment.jpg)
+
+
+- **Things Note:**\
+a. **Time** - hello\
+b. **Year** - international\
+c.
+
+
+
+
 
  1. **Display Name** - Let's name our current experiment **Sentiment Analysis**.
 
@@ -167,6 +183,8 @@ In **Task 2**, we will continue editing our experiment settings.
 This task deals with settings that will enable us to run an effective NLP experiment. Let us know understand such settings and let's adjust them accurately: 
 
 ![experiment-settings](assets/experiment-settings.jpg)
+
+
 
      a. Accuracy - accuracy stands for relative accuracy, i.e., higher values should lead to higher confidence in model performance (accuracy): the accuracy setting impacts which algorithms are considered, level of assembling, and types of feature engineering.
 
