@@ -85,26 +85,25 @@ In **Aquarium**, the **Driverless AI Test Drive** instance has the **Amazon fine
 
 ![dataset-columns-info](assets/dataset-columns-info.jpg)
 
-*Things to Note:*
 
 The dataset consists of 11 columns which are as follows:
 
-   
-
-     a. UserId - unique identifier for the user
-     b. ProductId - unique identifier for the product
-     c. Id - review ID
-     d. Summary - brief summary of the review
-     e. Score - rating between 1 and 5
-     f. HelpfulnessDenominator - number of users who indicated whether they found the review helpful or not
-     g. ProfileName - profile name of the user          
+> <p style="color:black">a. <b>UserId</b> - unique identifier for the user</p>
+> <p style="color:black">b. <b>ProductId</b> - unique identifier for the product</p>
+> <p style="color:black">c. <b>Id</b> - review ID</b>
+> <p style="color:black">d. <b>Summary</b> - brief summary of the review</b>
+> <p style="color:black">d. <b>Summary</b> - brief summary of the review</p>
+> <p style="color:black">e. <b>Score</b>- rating between 1 and 5</p>
+> <p style="color:black">f. <b>HelpfulnessDenominator</b> - number of users who indicated whether they found the review helpful or not</p>
+> <p style="color:black">g. <b>ProfileName</b> - profile name of the user</p>          
 
 4\. Continue scrolling the current page to see more columns (image is not included)
 
-     h. HelpfulnessNumerator - number of users who found the review helpful 
-     i. Time - timestamp for the review 
-     j. Description - text of the review
-     k. Positive Review - whether the review is Positive or Negative
+> <p style="color:black">h. <b>HelpfulnessNumerator</b> - number of users who found the review helpful</p> 
+> <p style="color:black">i. <b>Time</b> - timestamp for the review</p> 
+> <p style="color:black">j. <b>Description</b> - text of the review</p>
+> <p style="color:black">k. <b>Positive Review</b> - whether the review is Positiveor Negative
+
 
 5\. Return to the Datasets page.
 
