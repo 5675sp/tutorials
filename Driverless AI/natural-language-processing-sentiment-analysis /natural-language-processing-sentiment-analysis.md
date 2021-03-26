@@ -49,7 +49,7 @@ In this tutorial, we will learn some core NLP concepts that will enable us to bu
 You will need the following to be able to do this tutorial:
 
 - Basic knowledge of Machine Learning and Statistics  
-- A hands on knowledge of Driverless AI environment
+- A hands on knowledge of the Driverless AI environment
 - Basic knowledge of Driverless AI or completion of the following tutorial: [Automatic Machine Learning Introduction with Drivereless AI](https://training.h2o.ai/products/tutorial-1a-automatic-machine-learning-introduction-with-driverless-ai) 
 - A **Two-Hour Test Drive session** : Test Drive is H2O.ai's Driverless AI on the AWS Cloud. No need to download software. Explore all the features and benefits of the H2O Automatic Learning Platform.
   - Need a **Two-Hour Test Drive** session? Follow the instructions on [this quick tutorial](https://training.h2o.ai/products/tutorial-0-getting-started-with-driverless-ai-test-drive) to get a Test Drive session started. 
@@ -64,13 +64,13 @@ The dataset consists of reviews of fine foods from [Amazon](https://www.amazon.c
 
 Our aim is to study these reviews and try and predict whether a review is positive or negative.
 
-The data has been originally hosted by SNAP ([Stanford Large Network Dataset Collection](http://snap.stanford.edu/data/index.html)), a collection of more than 50 large network datasets from tens of thousands of nodes and edges to tens of millions of nodes and edges. In includes social networks, web graphs, road networks, internet networks, citation networks, collaboration networks, and communication networks [2].
+The data has been originally hosted by SNAP ([Stanford Large Network Dataset Collection](http://snap.stanford.edu/data/index.html)), a collection of more than 50 large network datasets. In includes social networks, web graphs, road networks, internet networks, citation networks, collaboration networks, and communication networks [2].
 
 
  
 ### Dataset Overview
 
-In **Aquarium**, the **Driverless AI Test Drive** instance has the **Amazon fine food review** dataset already and has been split for this tutorials experiment. The split resulted in a train and test dataset. The datasets can be located on the Datasets overview page. However, you can also upload the datasets externally. To learn more about how to add the dataset and how to split it please consult [Appendix A: Add the Dataset](#task-8-appendix-a-add-the-datasets).
+In **Aquarium**, the **Driverless AI Test Drive** instance has the **Amazon fine food review** dataset already and has been split for this tutorial's experiment. The split resulted in a train and test dataset. The datasets can be located on the Datasets overview page. However, you can also upload the datasets externally. To learn more about how to add the dataset please consult [Appendix A: Add the Dataset](#task-8-appendix-a-add-the-datasets).
 
 
 1\. In the **Datasets** overview page, observe the two datasets we will use for this tutorial:
@@ -86,36 +86,26 @@ In **Aquarium**, the **Driverless AI Test Drive** instance has the **Amazon fine
 ![dataset-columns-info](assets/dataset-columns-info.jpg)
 
 
-The dataset consists of 11 columns which are as follows:
+- The dataset consists of 11 columns which are as follows:</br>
+**a**. **UserId** - unique identifier for the user</br>
+**b**. **ProductId** - unique identifier for the product</br>
+**c**. **Id** - review ID</br>
+**d**. **Summary** - brief summary of the review</br>
+**e**. **Score** - rating between 1 and 5</br>
+**f**. **HelpfulnessDenominator** - number of users who indicated whether they found the review helpful or not</br>
+**g**. **ProfileName** - profile name of the user</br>
+     
+- Continue scrolling to the right of the page to see more columns (image is not included):</br>
+**h**. **HelpfulnessNumerator** - number of users who found the review helpful</br>
+**i**. **Time** - timestamp for the review</br>
+**j**. **Description** - text of the review</br>
+**k**. **Positive Review** - whether the review is Positive or Negative
 
-> <p style="color:black">a. <b>UserId</b> - unique identifier for the user</p>
-> <p style="color:black">b. <b>ProductId</b> - unique identifier for the product</p>
-> <p style="color:black">c. <b>Id</b> - review ID</b>
-> <p style="color:black">d. <b>Summary</b> - brief summary of the review</b>
-> <p style="color:black">d. <b>Summary</b> - brief summary of the review</p>
-> <p style="color:black">e. <b>Score</b>- rating between 1 and 5</p>
-> <p style="color:black">f. <b>HelpfulnessDenominator</b> - number of users who indicated whether they found the review helpful or not</p>
-> <p style="color:black">g. <b>ProfileName</b> - profile name of the user</p>          
-
-4\. Continue scrolling the current page to see more columns (image is not included)
-
-> <p style="color:black">h. <b>HelpfulnessNumerator</b> - number of users who found the review helpful</p> 
-> <p style="color:black">i. <b>Time</b> - timestamp for the review</p> 
-> <p style="color:black">j. <b>Description</b> - text of the review</p>
-> <p style="color:black">k. <b>Positive Review</b> - whether the review is Positiveor Negative</p>
-
-
-
-
-
-
-
-
-5\. Return to the Datasets page.
+4\. Return to the Datasets page.
 
 ### Launch Experiment
 
-The experiment has already been pre-built, given that it takes more than two hours for the experiment to complete. Below you will be guided on how to access the pre-built experiment right before we start our analysis on the built NLP model's effectiveness. For now, consider the above if you were to build the experiment/model from scratch: 
+The experiment has already been pre-built, given that it takes more than two hours for the experiment to complete. Below you will be guided on how to access the pre-built experiment right before we start our analysis on the built NLP model's effectiveness. For now, consider the above if you were to build the experiment from scratch: 
 
 
 1\. In the **Datasets** page, click on the following dataset, and right after select the **Predict** option: ```AmazonFineFoodReviews-train-26k.csv```:
@@ -130,36 +120,20 @@ The experiment has already been pre-built, given that it takes more than two hou
 
 ![name-experiment](assets/name-experiment.jpg)
 
-
-- **Things Note:**\
-a. **Time** - hello\
-b. **Year** - international\
-c.
-
-
-
-
-
- 1. **Display Name** - Let's name our current experiment **Sentiment Analysis**.
-
- 2. **Target Column** -  Select **PositiveReview** as the target column. The aim of the experiment is to try to predict whether a given review is positive or negative, hence the **PositiveReview** is selected as the target column. The column has only two values i.e Positive and Negative:
-
+- **Things to Note**:</br> 
+**a**. **Display Name** - Let's name our current experiment ```Sentiment Analysis```.</br>
+**b**. **Target Column** -  Select **PositiveReview** as the target column. The aim of the experiment is to try to predict whether a given review is positive or negative, hence the **PositiveReview** is selected as the target column. The column has only two values i.e Positive and Negative:</br>
      ![target-column](assets/target-column.jpg)
-
- 3. **Dropped Columns** - For this experiment, only text columns are selected, and therefore we shall only use the text columns, so we drop all columns that are not in a text format. 
-
-
+ **c**. **Dropped Columns** - For this experiment, only text columns are selected, and therefore we shall only use the text columns, so we drop all columns that are not in a text format(**do not drop the *Description* column**):</br>
      ![dropped-columns](assets/dropped-columns.jpg)
-     
-     - However, please note that if you decide to keep the non-text columns, the NLP algorithms will still work on the non-text columns.
-
- 4. **Test Dataset** -  The *Test dataset* is a dataset used to provide an unbiased evaluation of a _final_ model fit on the training dataset. It is not used during training of the model. Therefore, select the following dataset for the test dataset option: ```AmazonFineFoodReviews-test-26k.csv```: 
-
+          - However, please note that if you decide to keep the non-text columns, the NLP algorithms will still work on the non-text columns.</br>
+ **d**. **Test Dataset** -  The *Test dataset* is a dataset used to provide an unbiased evaluation of a _final_ model fit on the training dataset. It is not used during training of the model. Therefore, select the following dataset for the test dataset option: ```AmazonFineFoodReviews-test-26k.csv```:</br> 
      ![test-dataset](assets/test-dataset.jpg)
 
-     The experiment screen will finally look like the image below:
 
-     ![final-experiment-screen](assets/final-experiment-screen.jpg)
+At this point, your experiment preview page will similarly look as follows: 
+
+![final-experiment-screen](assets/final-experiment-screen.jpg)
 
 In **Task 2**, we will continue editing our experiment settings. 
 
@@ -180,79 +154,78 @@ In **Task 2**, we will continue editing our experiment settings.
 
 ## Task 2: Training Settings
 
-This task deals with settings that will enable us to run an effective NLP experiment. Let us know understand such settings and let's adjust them accurately: 
+This task deals with settings that will enable us to run an effective NLP experiment. Let us now understand such settings and let's adjust them accurately: 
 
 ![experiment-settings](assets/experiment-settings.jpg)
 
+- **Things to Note**:</br>
+     **a**. **Accuracy** - accuracy stands for relative accuracy, i.e., higher values should lead to higher confidence in model performance (accuracy): the accuracy setting impacts which algorithms are considered, level of assembling, and types of feature engineering.</br>
+     - Therefore, set the **Accuracy** value to **5**
 
+     **b**. **Time** - time is the relative time for completing the experiment. Higher values will lead to experiments taking longer.</br>
+     - Therefore, set the **Time** value to **2**</br>
 
-     a. Accuracy - accuracy stands for relative accuracy, i.e., higher values should lead to higher confidence in model performance (accuracy): the accuracy setting impacts which algorithms are considered, level of assembling, and types of feature engineering.
+     **c**. **Interpretability** - interpretability is the degree to which a human can understand the cause of the decision. It controls the complexity of the models and features allowed within the experiments (e.g., higher interpretability will generally block complicated features, feature engineering, and models).</br>
+     - Therefore, set the **Interpretability** value to **5**
 
-> <p style="color:black">b. <b>Time</b> - time is the relative time for completing the experiment. Higher values will lead to experiments taking longer.</p> 
-3. **Interpretability** - interpretability is the degree to which a human can understand the cause of the decision. It controls the complexity of the models and features allowed within the experiments (e.g., higher interpretability will generally block complicated features, feature engineering, and models).
-4. **Scorer** - the scorer is the metric used to evaluate the machine learning algorithm. The scorer used for this experiment is the LogLoss or logarithmic loss metric, which is used to evaluate the performance of a binomial or multinomial classifier. Unlike AUC, which looks at how well a model can classify a binary target, log loss evaluates how close a model’s predicted values (uncalibrated probability estimates) are to the actual target value. The lower the Logloss value, the better the model can predict the sentiment. 
-5. **Expert Settings** - several configurable settings are available for NLP experiments in Driverless AI, which can be tuned according to the experiment type. To tune the NLP settings, click on the **Expert Settings**, and navigate to the NLP tab:
+     **d**. **Scorer** - the scorer is the metric used to evaluate the machine learning algorithm. The scorer used for this experiment is the LogLoss or logarithmic loss metric, which is used to evaluate the performance of a binomial or multinomial classifier. Unlike AUC, which looks at how well a model can classify a binary target, log loss evaluates how close a model’s predicted values (uncalibrated probability estimates) are to the actual target value. The lower the Logloss value, the better the model can predict the sentiment.</br>
+     - Therefore, set the **scorer** to **LOGLOSS**
+
+     **e**. **Expert Settings** - several configurable settings are available for NLP experiments in Driverless AI, which can be tuned according to the experiment type. To tune the NLP settings, click on the **Expert Settings**, and navigate to the NLP tab:
 
      ![nlp-expert-settings](assets/nlp-expert-settings.jpg)
 
-     - In the NLP tab, you can enable the following settings for your particular NLP experiment: 
+     - In the NLP tab, note the following particular settings that users  can use for any NLP experiment:  
 
-          - **Word-Based CNN TensorFlow Models for NLP**:
+          **a**. **Word-Based CNN TensorFlow Models for NLP**:
+               specify whether to use Word-based CNN(Convolutional Neural Network) TensorFlow models for NLP. This option is ignored if TensorFlow is disabled. We recommend that you disable this option on systems that do not use GPUs.</br>
+          - For this experiment set this setting **ON**  
 
-               Specify whether to use Word-based CNN(Convolutional Neural Network) TensorFlow models for NLP. This option is ignored if TensorFlow is disabled. We recommend that you disable this option on systems that do not use GPUs.
+          **b**. **Word-Based BiGRU TensorFlow Models for NLP**:
+               specify whether to use Word-based BiGRU TensorFlow models for NLP. This option is ignored if TensorFlow is disabled. We recommend that you disable this option on systems that do not use GPUs.</br>
 
-          - **Word-Based BiGRU TensorFlow Models for NLP**:
+          - For this experiment set this setting **OFF**
 
-               Specify whether to use Word-based BiG-RU TensorFlow models for NLP. This option is ignored if TensorFlow is disabled. We recommend that you disable this option on systems that do not use GPUs.
+          **c**. **Character-Based CNN TensorFlow Models for NLP**:
+               specify whether to use Character-level CNN TensorFlow models for NLP. This option is ignored if TensorFlow is disabled. We recommend that you disable this option on systems that do not use GPUs.</br>
+          - For this experiment set this setting **ON**
 
-          - **Character-Based CNN TensorFlow Models for NLP**:
+          **d**. **PyTorch Models for NLP(Experimental)**:
+               specify whether to enable pre-trained PyTorch models and fine-tune them for NLP tasks. This is set to Auto by default. You need to set this to On if you want to use the PyTorch models like BERT for feature engineering or for modeling. We recommend that you use GPUs to speed up execution when this option is used.</br> 
+          - For this experiment set this setting to **AUTO**
 
-               Specify whether to use Character-level CNN TensorFlow models for NLP. This option is ignored if TensorFlow is disabled. We recommend that you disable this option on systems that do not use GPUs.
-
-          - **PyTorch Models for NLP(Experimental)**:
-
-               Specify whether to enable pre-trained PyTorch models and fine-tune them for NLP tasks. This is set to Auto by default. You need to set this to On if you want to use the PyTorch models like BERT for feature engineering or for modeling. We recommend that you use GPUs to speed up execution when this option is used. 
-
-          - **Select which pretrained PyTorch NLP Model(s) to use**:
-
-               This setting is to be used if you enable the Pytorch Models. Click on the **Select which pretrained PyTorch NLP Model(s) to use** and specify one or more pretrained PyTorch NLP models to use from the following list:
-
+          **e**. **Select which pretrained PyTorch NLP Model(s) to use**:
+               This setting is to be used if you enable the Pytorch Models. When you click on the **Select which pretrained PyTorch NLP Model(s) to use** you can specify one or more pretrained PyTorch NLP models to use from the following list:</br>
                ![pytorch-pretrained-models](assets/pytorch-pretrained-models.jpg)
-
-               **Notes:**
-
-               - This setting requires an Internet connection.
-               - Using BERT-like models may result in a longer experiment completion time.
+             
+          - This setting requires an Internet connection.
+          - Using BERT-like models may result in a longer experiment completion time.
+          - We will change nothing from this setting. 
 
 6. Additionally, there are three more buttons located beneath the experimental settings knob which stand for the following:
 
      -   **Classification or Regression**: Driverless AI automatically determines the problem type based on the response column. Though not recommended, you can override this setting by clicking this button. Our current problem is that of Classification.
-    
+          - Make sure this setting is set to **Classification** 
      -  **Reproducible**: This button allows you to build an experiment with a random seed and get reproducible results. If this is disabled (default), the results will vary between runs.
-    
+          - Don't enable this setting 
      -   **Enable GPUs**: Specify whether to enable GPUs. (Note that this option is ignored on CPU-only systems.)
-    
-Update the following experiment settings so that they match the image below, then select Launch Experiment. This configuration is selected to generate a model quickly with a sufficient level of accuracy in the H2O Driverless Test Drive environment.
+          - Make sure this setting is enable
 
--   **Accuracy**: 5
--   **Time**: 2
--   **Interpretability**: 5
--   **Scorer**: LogLoss
+We selected the above settings to generate a model quickly with sufficient accuracy in the H2O Driverless AI Test Drive environment. At this point, your experiment pre-view page should similarly look as follows: 
 
 ![final-experiment-launch](assets/final-experiment-launch.jpg)
 
-The time to run this experiment depends upon the memory, availability of GPU in a system and the expert settings which have been selected by the user. If the system does not have a GPU, it might run for a longer time.
+The amount of time this experiment will take to complete will depend on 
+on the memory, availability of GPU in a system, and the expert settings a user might select. If the system does not have a GPU, it might run for a longer time. You can Launch the Experiment and wait for it to finish, or you can access a pre-build version in the **Experiment*** section. After discussing few NLP concepts in the upcoming two tasks, we will discuss how to access this pre-built experiment right before analyzing its performance. 
 
 ### Resources
 
-[1] [J. Friedman, B. Popescu. "Predictive Learning via Rule Ensembles". 2005](http://statweb.stanford.edu/~jhf/ftp/RuleFit.pdf)
-
-[2] [Ensemble Learning](https://en.wikipedia.org/wiki/Ensemble_learning)
+- [1] [J. Friedman, B. Popescu. "Predictive Learning via Rule Ensembles". 2005](http://statweb.stanford.edu/~jhf/ftp/RuleFit.pdf)
+- [2] [Ensemble Learning](https://en.wikipedia.org/wiki/Ensemble_learning)
 
 ### Deeper Dive
 
 -   [To better understand the impact of setting the Accuracy, Time and Interpretability Knobs between 1 and 10 in H2O Driverless AI](http://docs.h2o.ai/driverless-ai/latest-stable/docs/userguide/experiment-settings.html?highlight=interpretability#accuracy-time-and-interpretability-knobs)
-    
 -   [Expert Settings for H2O Driverless AI](http://docs.h2o.ai/driverless-ai/latest-stable/docs/userguide/expert-settings.html?highlight=expert%20settings)
 
 
@@ -262,37 +235,37 @@ The time to run this experiment depends upon the memory, availability of GPU in 
 
 NLP is the field of study that focuses on the interactions between human language and computers. NLP sits at the intersection of computer science, artificial intelligence, and computational linguistics[1]. NLP is a way for computers to analyze, understand, and derive meaning from human language in a smart and useful way. By utilizing NLP, developers can organize and structure knowledge to perform tasks such as :
 
--   Automatic tagging of incoming customer queries related to credit card, loans etc
--   Sentiment analysis of Social media reviews
--   Using free text variables along with numeric variables for credit risk, fraud models.
--   Emotion detection
--   Profanity detection
+- Automatic tagging of incoming customer queries related to credit card, loans, etc
+- Sentiment analysis of social media reviews
+- Using free text variables along with numeric variables for credit risk and fraud models
+- Emotion detection
+- Profanity detection
 
-The text data is highly unstructured but the Machine learning algorithms usually work with input features that are numeric in nature. So before we start with any NLP project we need to pre-process and normalize the text to make it ideal for feeding into the commonly available Machine learning algorithms. This essentially means we need to build a pipeline of some sort that breaks down the problem into several pieces. We can then apply various methodologies on these pieces and plug the solution together in the form of a pipeline.
+The text data is highly unstructured, but the Machine learning algorithms usually work with numeric input features. So before we start with any NLP project, we need to pre-process and normalize the text to make it ideal for feeding into the commonly available Machine learning algorithms. This essentially means we need to build a pipeline of some sort that breaks down the problem into several pieces. We can then apply various methodologies to these pieces and plug the solution together in a pipeline.
 
 ### Building a Typical NLP Pipeline
 
 ![nlp-pipeline](assets/nlp-pipeline.jpg)
 
-The figure above shows how a typical pipeline looks like. It is also important to note that there may be variations depending upon the problem at hand. Hence the pipeline will have to be adjusted to suit our needs. Driverless AI automates the above process. Let's try and understand some of the components of the pipeline in brief:
+The figure above shows how a typical pipeline looks. It is also important to note that there may be variations depending upon the problem at hand. Hence the pipeline will have to be adjusted to suit our needs. Driverless AI automates the above process. Let's try and understand some of the components of the pipeline in brief:
 
 ### Text preprocessing
 
-Text pre-processing involves using a variety of techniques to convert raw text into well-defined sequences of linguistic components that have standard structure and notation. Some of those techniques are:
+Text pre-processing involves using various techniques to convert raw text into well-defined sequences of linguistic components that have standard structure and notation. Some of those techniques are:
 
-- **Sentence Segmentation:** involves identifying sentence boundaries between words in different sentences. Since most written languages have punctuation marks which occur at sentence boundaries, sentence segmentation is frequently referred to as sentence boundary detection, sentence boundary disambiguation, or sentence boundary recognition. All these terms refer to the same task: determining how a text should be divided into sentences for further processing.
+- **Sentence Segmentation:** involves identifying sentence boundaries between words in different sentences. Since most written languages have punctuation marks that occur at sentence boundaries, sentence segmentation is frequently referred to as sentence boundary detection, sentence boundary disambiguation, or sentence boundary recognition. All these terms refer to the same task: determining how a text should be divided into sentences for further processing.
 
 - **Text Tokenization:** Tokenization involves splitting raw text corpus into sentences and then further splitting each sentence into words.
 
-- **Text Standardisation:** Once the text has been tokenized, it is normalised by getting rid of the noise. Noise relates to anything that isn't in a standard format like punctuation marks, special characters or any unwanted tokens. If required, case conversions can also be done i.e converting all tokens into either lowercase or uppercase.
+- **Text Standardisation:** Once the text has been tokenized, it is normalized by getting rid of the noise. Noise relates to anything that isn't in a standard format like punctuation marks, special characters, or unwanted tokens. If required, case conversions can also be done, i.e., converting all tokens into either lowercase or uppercase.
 
-- **Removing Stopwords:** Stop words are words which appear very frequently in a text like "and", "the", and "a", but appear to be of little value in helping select documents. Such words are excluded from the vocabulary entirely.
+- **Removing Stopwords:** Stop words are words that appear very frequently in a text like "and", "the", and "a", but appear to be of little value in helping select documents. Such words are excluded from the vocabulary entirely.
 
-- **Stemming:** Stemming is the process of reducing inflected (or sometimes derived) words to their stem, base or root form — generally a written word form. Example: if we were to stem the following words: “Stems”, “Stemming”, “Stemmed”, “and "Stemtization”, the result would be a single token “stem”.
+- **Stemming:** Stemming is the process of reducing inflected (or sometimes derived) words to their stem, base, or root form — generally a written word form. For example: if we were to stem the following words: "Stems," "Stemming," "Stemmed," "and "Stemtization," the result would be a single token "stem."
 
-- **Lemmatization:** a similar operation to stemming is lemmatization. However, the major difference between the two is that stemming can often create non-existent words, whereas lemmatization creates actual words. An example of lemmatization: “run” is a base form for words like “running” or “ran” and the word “better” and “good” are in the same lemma, so they are considered the same.
+- **Lemmatization:** a similar operation to Stemming is Lemmatization. However, the major difference between the two is that Stemming can often create non-existent words, whereas Lemmatization creates actual words. An example of Lemmatization: "run" is a base form for words like "running" or "ran," and the word "better" and "good" are in the same lemma, so they are considered the same.
 
-It is important to note here that the above steps are not mandatory and their usage depends upon the use case. For instance, in sentiment analysis emoticons signify polarity and stripping them off from the text may not be a good idea. The general goal of the Normalization, Stemming and Lemmatization techniques is to improve the generalization of the model. Essentially we are mapping different variants of what we consider to be the same or very similar "word" to one token in our data.
+It is important to note here that the above steps are not mandatory, and their usage depends upon the use case. For instance, in sentiment analysis, emoticons signify polarity, and stripping them off from the text may not be a good idea. The general goal of Normalization, Stemming, and Lemmatization techniques is to improve the model's generalization. Essentially we are mapping different variants of what we consider to be the same or very similar "word" to one token in our data.
 
 ### Feature Extraction
 
@@ -305,185 +278,155 @@ The Machine Learning Algorithms usually expect features in the form of numeric v
 
 The intuition behind the Bag of Words is that documents are similar if they have identical content, and we can get an idea about the meaning of the document from its content alone. 
 
-### [Example implementation](https://en.wikipedia.org/wiki/Bag-of-words_model)
+### Example implementation
 
-The following models a text document using bag-of-words. Here are two simple text documents:
+The following models a text document using bag-of-words here are two simple text documents:
 
 - John likes to watch movies. Mary likes movies too.
 - John also likes to watch football games.
- 
- 
+  
 Based on these two text documents, a list is constructed as follows for each document:
 
-- "John","likes","to","watch","movies","Mary","likes","movies","too"
-- "John","also","likes","to","watch","football","games"
+- "John", "likes" ,"to" ,"watch" ,"movies" ,"Mary" ,"likes","movies" ,"too"
+- "John" ,"also" ,"likes" ,"to" ,"watch" ,"football" ,"games"
 
-Representing each bag-of-words as a JSON object, and attributing to the respective JavaScript variable:
+Representing each bag-of-words as a JSON object and attributing to the respective JavaScript variable:
 
-- BoW1 = {"John":1,"likes":2,"to":1,"watch":1,"movies":2,"Mary":1,"too":1};
-- BoW2 = {"John":1,"also":1,"likes":1,"to":1,"watch":1,"football":1,"games":1};
+- BoW1 = {"John":1, "likes":2, "to":1, "watch":1 ,"movies":2 ,"Mary":1 ,"too":1};
+- BoW2 = {"John":1, "also":1, "likes":1, "to":1, "watch":1, "football":1, "games":1};
 
 
-It is important to note that BoW does not retain word order and is sensitive towards document length, i.e token frequency counts could be higher for longer documents.
+It is important to note that **BoW**(Bag of Words) does not retain word order and is sensitive towards document length, i.e., token frequency counts could be higher for longer documents.
 
-It is also possible to create BoW models with combination of consecutive words, also known as n-grams.
+It is also possible to create **BoW** models with consecutive words, also known as **n-grams**:
 
-- **TF-IDF Model:** A problem with the Bag of Words approach is that highly frequent words start to dominate in the document (e.g. larger score), but may not contain as much "informational content". Also, it will give more weight to longer documents than the shorter ones. One approach is to rescale the frequency of words by how often they appear in all documents so that the scores for frequent words across all documents are penalized. This approach of scoring is called  **Term Frequency-Inverse Document Frequency**, or TF-IDF [2] for short, where:
+- **TF-IDF Model:** A problem with the Bag of Words approach is that highly frequent words start to dominate in the document (e.g., larger score) but may not contain as much "informational content." Also, it will give more weight to longer documents than shorter ones. One approach is to rescale the frequency of words by how often they appear in all documents so that the scores for frequent words across all documents are penalized. This approach of scoring is called **Term Frequency-Inverse Document Frequency**, or TF-IDF [2] for short, where:
 
-     - **Term Frequency**  is a scoring of the frequency of the word in the current document. TF = (Number of times term t appears in a document)/(Number of terms in the document)
+     - **Term Frequency** is a scoring of the frequency of the word in the current document. TF = (Number of times term t appears in a document)/(Number of terms in the document)
+    - **Inverse Document Frequency**: is a scoring of how rare the word is across documents. IDF = 1+log(N/n), where **N** is the number of documents, and **n** is the number of documents a term **t** has appeared. TF-IDF weight is often used in information retrieval and text mining. This weight is a statistical measure used to evaluate how important a word is to a document in a collection or corpus:
 
-    - **Inverse Document Frequency**: is a scoring of how rare the word is across documents.IDF = 1+log(N/n), where N is the number of documents and n is the number of documents a term t has appeared in. TF-IDF weight is often used in information retrieval and text mining. This weight is a statistical measure used to evaluate how important a word is to a document in a collection or corpus
+     ![tfidf](assets/tfidf.jpg)
 
-![tfidf](assets/tfidf.jpg)
+The dimensions of the output vectors are high. This also gives importance to the rare terms that occur in the corpus, which might help our classification tasks:
 
-The dimensions of the output vectors are high. This also gives importance to the rare terms that occur in the corpus which might be helpful in our classification tasks.
+- **Principal Component Analysis (PCA)**:
 
-- **Principal Component Analysis (PCA)**
+     Principal Component Analysis is a dimension reduction tool that can be used to reduce a large set of variables to a small set that still contains most of the information in the original set.
 
-Principal Component Analysis s a dimension reduction tool that can be used to reduce a large set of variables to a small set that still contains most of the information in the original set
-
-- **Truncated SVD**
+- **Truncated SVD**:
     
-SVD stands for Singular Value Decomposition[3] which is a way to decompose matrices. Truncated SVD is a common method to reduce the dimension for text-based frequency/vectors.
+     SVD stands for Singular Value Decomposition[3], which is a way to decompose matrices. Truncated SVD is a common method to reduce the dimension for text-based frequency/vectors.
 
-- **Advanced Word Vectorization Models**
+- **Advanced Word Vectorization Models**:
     
-TFIDF and frequency-based models represent counts and significant word information, but they lack semantics of the words in general. One of the popular representations of text to overcome this is Word Embeddings.
+     TFIDF and frequency-based models represent counts and significant word information, but they lack semantics of the words in general. One of the popular representations of text to overcome this is **Word Embeddings**.
 
-Word embeddings is a feature engineering technique for text where words or phrases from the vocabulary are mapped to vectors of real numbers. There are ways to create more advanced word vectorization models for extracting features from text data like word2vec[2] model. Released in 2013 by Google, word2vec is a neural network-based implementation that learns distributed vector representations of words based on continuous Bag of Words and skip-gram–based architectures 
+     Word embeddings is a feature engineering technique for text where words or phrases from the vocabulary are mapped to vectors of real numbers. There are ways to create more advanced word vectorization models for extracting features from text data like word2vec[2] model. The word2vec model was released in 2013 by Google; word2vec is a neural network-based implementation that learns distributed vector representations of words based on continuous **Bag of Words** and skip-gram–based architectures.
 
-![word-vectors](assets/word-vectors.jpg)
+     ![word-vectors](assets/word-vectors.jpg)
 
-Representations are made in such a way that words that have similar meanings are placed close or equidistant to each other. For example, words like ‘king’ is closely associated with “queen” in this vector representation.
+     Representations are made in such a way that words that have similar meanings are placed close or equidistant to each other. For example, a word like **king** is closely associated with **queen** in this vector representation.
 
-- **Convolution neural network(CNN) models on word embeddings**
+- **Convolution Neural Network(CNN) Models on Word Embeddings**:
 
-CNN's are generally used in computer vision, however, they've recently been applied on top of pre-trained word vectors for sentence-level classification tasks and the results were promising[5].
+     CNN's are generally used in computer vision; however, they've recently been applied on top of pre-trained word vectors for sentence-level classification tasks, and the results were promising[5].
 
-Word embeddings can be passed as inputs to CNN models, and cross-validated predictions are obtained from it. These predictions can then be used as new set of features.
+     Word embeddings can be passed as inputs to CNN models, and cross-validated predictions are obtained from them. These predictions can then be used as a new set of features.
 
-![cnn](assets/cnn.jpg)
+     ![cnn](assets/cnn.jpg)
 
-[Image Reference](http://www.wildml.com/2015/11/understanding-convolutional-neural-networks-for-nlp)
+     <p align="center">
+     Figure 1. Convolutional Neural Network (CNN) architecture for sentence classification
+     </p>
 
 - **Recurrent neural networks**
 
-RNNs like LSTM and GRU are state of the art algorithms for NLP problems. Simply, put a Bi-directional GRU model is putting two independent RNN models in one.
+     RNNs like LSTM and GRU are state-of-the-art algorithms for NLP problems.  A Bi-directional GRU model is putting two independent RNN models in one.
 
-For example, in the sentence "John is walking on the golf court", a unidirectional model would represent states with representing "golf" based on "John is walking" but not the "court". Using a bi-directional model, the representation would also account the later representations giving the model more predictive power.
+     For example, in the sentence "John is walking on the golf court," a unidirectional model would represent states representing "golf" based on "John is walking" but not the "court."  In a bi-directional model, the representation would also account for the later representations giving the model more predictive power. This makes it a more natural approach when dealing with textual data since the text is naturally sequential[6].
 
-This makes it a more ‘natural' approach when dealing with textual data since the text is naturally sequential[6].
+     ![rnn](assets/rnn.jpg)
 
-![rnn](assets/rnn.jpg)
-
-[Image Reference](https://richliao.github.io/supervised/classification/2016/12/26/textclassifier-RNN)
+     <p align="center">
+     Figure 2. Standard Sequence to Sequence Model. 
+     </p>
 
 - **Transformer based language models** 
 
-Transformer based language models like BERT are state-of-the-art NLP models that can be used for a wide variety of NLP tasks. These models capture the contextual relation between words by using an attention mechanism. Unlike directional models that read text sequentially, a Transformer-based model reads the entire sequence of text at once, allowing it to learn the context of the word based on all of its surrounding words. The embeddings obtained by these models show improved results in comparison to earlier embedding approaches.
+     Transformer-based language models like BERT are state-of-the-art NLP models that can be used for a wide variety of NLP tasks. These models capture the contextual relation between words by using an attention mechanism. Unlike directional models that read text sequentially, a Transformer-based model reads the entire sequence of text at once, allowing it to learn the context of the word based on all of its surrounding words. The embeddings obtained by these models show improved results in comparison to earlier embedding approaches.
 
-![bert-arch](assets/bert-arch.jpg)
-
-[Image Reference](https://ai.googleblog.com/2018/11/open-sourcing-bert-state-of-art-pre.html)
+     <p align="center">
+     <img src="assets/bert-arch.jpg" width="370"  > 
+     <p align="center">Figure 3. BERT</p>
+     </p>
 
 ### Building Text Classification Models
 
 Once the features have been extracted, they can then be used for training a classifier.
 
+With this task in mind, let's learn about **Driverless AI NLP Recipes**.
+
 ### References
 
-[1] [Natural language processing - WIkipedia](https://stackedit.io/%5Bhttps://en.wikipedia.org/wiki/Natural_language_processing%5D(https://en.wikipedia.org/wiki/Natural_language_processing))
-
-[2] [TF-IDF](https://en.wikipedia.org/wiki/Tf%E2%80%93idf)
-
-[3] [SVD](https://en.wikipedia.org/wiki/Singular_value_decomposition)
-
-[4] [Word2vec Model](https://code.google.com/archive/p/word2vec/)
-
-[5] [Understanding Convolutional Neural Networks for NLP](http://www.wildml.com/2015/11/understanding-convolutional-neural-networks-for-nlp/)
-
-[6] [Convolutional Neural Networks for Sentence Classification](https://arxiv.org/pdf/1408.5882.pdf)
-
-[7] [Text Classification, Part 2 - sentence-level Attentional RNN](https://richliao.github.io/supervised/classification/2016/12/26/textclassifier-RNN/)
-
-[8] [Attention Is All You Need](https://arxiv.org/abs/1706.03762)
-
-[9] [BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding](https://arxiv.org/abs/1810.04805)
+- [1] [Natural language processing - WIkipedia](https://stackedit.io/%5Bhttps://en.wikipedia.org/wiki/Natural_language_processing%5D(https://en.wikipedia.org/wiki/Natural_language_processing))
+- [2] [TF-IDF](https://en.wikipedia.org/wiki/Tf%E2%80%93idf)
+- [3] [SVD](https://en.wikipedia.org/wiki/Singular_value_decomposition)
+- [4] [Word2vec Model](https://code.google.com/archive/p/word2vec/)
+- [5] [Understanding Convolutional Neural Networks for NLP](http://www.wildml.com/2015/11/understanding-convolutional-neural-networks-for-nlp/)
+- [6] [Convolutional Neural Networks for Sentence Classification](https://arxiv.org/pdf/1408.5882.pdf)
+- [7] [Text Classification, Part 2 - sentence-level Attentional RNN](https://richliao.github.io/supervised/classification/2016/12/26/textclassifier-RNN/)
+- [8] [Attention Is All You Need](https://arxiv.org/abs/1706.03762)
+- [9] [BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding](https://arxiv.org/abs/1810.04805)
+- [Figure 1. Convolutional Neural Network (CNN) architecture for sentence classification](http://www.wildml.com/2015/11/understanding-convolutional-neural-networks-for-nlp)
+- [Figure 2. Standard Sequence to Sequence Model](https://richliao.github.io/supervised/classification/2016/12/26/textclassifier-RNN)
+- [Figure 3. BERT](https://ai.googleblog.com/2018/11/open-sourcing-bert-state-of-art-pre.html)
 
 ### Deeper Dive and Resources
 
--   [Jurafsky, Daniel and James Martin (2008) Speech and Language Processing (Second Edition). Prentice Hall](https://stackedit.io/%5Bhttps://web.stanford.edu/~jurafsky/slp3/ed3book.pdf%5D(https://web.stanford.edu/~jurafsky/slp3/ed3book.pdf))
-
--   [Natural Language Processing with Python : Steven Bird, Ewan Klein, and Edward Loper](https://www.nltk.org/book/)
+- [Jurafsky, Daniel and James Martin (2008) Speech and Language Processing (Second Edition). Prentice Hall](https://stackedit.io/%5Bhttps://web.stanford.edu/~jurafsky/slp3/ed3book.pdf%5D(https://web.stanford.edu/~jurafsky/slp3/ed3book.pdf))
+- [Natural Language Processing with Python : Steven Bird, Ewan Klein, and Edward Loper](https://www.nltk.org/book/)
 
 ## Task 4: Driverless AI NLP Recipe
 
-Text data can contain critical information to inform better predictions. Driverless AI automatically converts text strings into features using powerful techniques like TFIDF, CNN, and GRU. Driverless AI now also includes state-of-the-art PyTorch BERT transformers. With advanced NLP techniques, Driverless AI can also process larger text blocks and build models using all available data and to solve business problems like sentiment analysis, document classification, and content tagging.
+Text data can contain critical information to inform better predictions. Driverless AI automatically converts text strings into features using powerful techniques like TFIDF, CNN, and GRU. Driverless AI now also includes state-of-the-art PyTorch BERT transformers. With advanced NLP techniques, Driverless AI can also process larger text blocks, build models using all available data, and solve business problems like sentiment analysis, document classification, and content tagging.
 
-The Driverless AI platform has the ability to support both standalone text and text with other columns as predictive features. In particular, the following NLP recipes are available for a given text column:
+The Driverless AI platform can support both standalone text and text with other columns as predictive features. In particular, the following NLP recipes are available for a given text column:
 
 ![driverless-nlp-recipe](assets/driverless-nlp-recipe.jpg)
 
-### Key Capabilities of Driverless AI NLP Recipe
-- **n-grams**
+### Key Capabilities of Driverless AI NLP Recipes
 
-An n-gram is a continuous sequence of n items from a given sample of text or speech.
-
-- **TFIDF of n-grams**
-
-Frequency-based features are multiplied with inverse document frequency to get TFIDF vectors.
-
-- **Frequency of n-grams**
-
-Frequency-based features represent the count of each word in the given text in the form of vectors. Frequency-based features are created for different n-gram values[2]. The dimensions of the output vectors are quite high. Words/n-grams that occur more number of times will get higher weightage than the ones that occur less frequently.
-
-- **Truncated SVD Features**
-
-Both TFIDF and Frequency of n-grams result in a higher dimension. To tackle this, we use Truncated SVD to decompose the vector arrays in lower dimensions.
-
-- **Linear models on TF/IDF vectors**
-
-In our NLP recipe, we also have linear models on top of n-gram TFIDF / frequency vectors. This capture linear dependencies that are simple yet significant in achieving the best accuracies.
-
-- **Word Embeddings**
-
-Driverless AI NLP recipe makes use of the power of word embeddings where words or phrases from the vocabulary are mapped to vectors of real numbers.
-
-- **Bi-direction GRU models on Word Embeddings(TensorFlow)**
-
-A Bi-directional GRU model is like putting two independent RNN models in one. Taking note of accuracy as well as speed in our experiments, we have decided to take advantage of high speed and almost similar accuracies of GRU architecture compared to its counterpart LSTM.
-
+- **N-grams**:
+     - An n-gram is a contiguous sequence of **n** items from a given text or speech sample.
+- **TFIDF of n-grams**:
+     - Frequency-based features are multiplied with inverse document frequency to get TFIDF vectors.
+- **Frequency of n-grams**:
+     - Frequency-based features represent the count of each word in the given text in the form of vectors. Frequency-based features are created for different n-gram values[2]. The dimensions of the output vectors are quite high. Words/n-grams that occur more times will get higher weightage than the ones that occur less frequently.
+- **Truncated SVD Features**:
+     - Both TFIDF and Frequency of n-grams result in a higher dimension. To tackle this, we use Truncated SVD to decompose the vector arrays in lower dimensions.
+- **Linear models on TF/IDF vectors**:
+     - In our NLP recipe, we also have linear models on top of n-gram TFIDF/ frequency vectors. This captures linear dependencies that are simple yet significant in achieving the best accuracies.
+- **Word Embeddings**:
+     - Driverless AI NLP recipe uses the power of word embeddings where words or phrases from the vocabulary are mapped to vectors of real numbers.
+- **Bi-direction GRU models on Word Embeddings(TensorFlow)**:
+     - A Bi-directional GRU model is like putting two independent RNN models in one. Taking note of accuracy and speed in our experiments, we have decided to take advantage of the high speed and almost similar accuracy of GRU architecture compared to its counterpart LSTM.
 - **Convolution neural network models on:**
-
-     - **Word embeddings followed by CNN model (TensorFlow)**
-
-     In Driverless AI, we pass word embeddings as input to CNN models, get cross-validated predictions from it and use them as a new set of features.
-
-     - **Character embeddings followed by CNN model (TensorFlow)**
-
-     Natural language processing is complex as the language is hard to understand given small data and different languages. Targeting languages like Japanese, Chinese where characters play a major role, we have character level embeddings in our recipe as well.
-
-     In character embeddings, each character gets represented in the form of vectors rather than words. Driverless AI uses character level embeddings as input to CNN models and later extracts class probabilities to feed as features for downstream models: this gives the ability to work in languages other than English. In languages like Japanese and Chinese, where there is no concept of words, character embeddings will be useful.
-
+     - **Word embeddings followed by CNN model (TensorFlow)**:
+          - In Driverless AI, we pass word embeddings as input to CNN models; we get cross-validated predictions from it and use them as a new set of features.
+     - **Character embeddings followed by CNN model (TensorFlow)**:
+          - Natural language processing is complex as the language is hard to understand given small data and different languages. Targeting languages like Japanese, Chinese where characters play a major role, we have character level embeddings in our recipe as well.
+          - In character embeddings, each character gets represented in the form of vectors rather than words. Driverless AI uses character level embeddings as input to CNN models and later extracts class probabilities to feed as features for downstream models: this gives the ability to work in languages other than English. In languages like Japanese and Chinese, where there is no concept of words, character embeddings will be useful.
 - **BERT/DistilBERT based embeddings for Feature Engineering (PyTorch):**
-
-BERT and [DistilBERT](https://arxiv.org/abs/1910.01108) models can be used for generating embeddings for any text columns. These pre-trained models are used to get embeddings for the text followed by Linear/Logistic Regression to generate features that can then be used for any downstream models in Driverless AI.
-
+     - BERT and [DistilBERT](https://arxiv.org/abs/1910.01108) models can be used to generate embeddings for any text columns. These pre-trained models are used to get embeddings for the text, followed by Linear/Logistic Regression to generate features that Driverless AI  can then use for any downstream models in Driverless AI.
 - **PyTorch Transformer Architecture Models (eg. BERT) as Modeling Algorithms:**
-
-Starting with Driverless AI 1.9 release, the Transformer-based architectures shown in the diagram below are supported as models in Driverless AI.
-
-![bert-models](assets/bert-models.jpg)
-
-The BERT model supports multiple languages. [DistilBERT](https://arxiv.org/abs/1910.01108) is a distilled version of BERT that has fewer parameters compared to BERT (40% less) and it is faster (60% speedup) while retaining 95% of BERT level performance. The DistilBERT model can be useful when training time and model size is important
-
+     - With versions of  Driverless AI 1.9 and higher, the Transformer-based architectures shown in the diagram below are supported as models in Driverless AI:
+     ![bert-models](assets/bert-models.jpg)
+     - The BERT model supports multiple languages. [DistilBERT](https://arxiv.org/abs/1910.01108) is a distilled version of BERT that has fewer parameters compared to BERT (40% less), and it is faster (60% speedup) while retaining 95% of BERT level performance. The DistilBERT model can be helpful when training time and model size is important.
 - **Domain Specific BERT Recipes**
-
-DAI Base BERT model can also be extended for domain specific problems
-
-- [FinBERT](https://github.com/ProsusAI/finBERT) (trained on financial text)
-- [SciBERT](https://github.com/allenai/scibert) (trained on scientific text)
-- [BioBERT](https://github.com/dmis-lab/biobert) (trained on bio-medical text)
+     Driverless AI can also extend the DAI Base BERT model for domain-specific problems:
+     - [FinBERT](https://github.com/ProsusAI/finBERT) (trained on financial text)
+     - [SciBERT](https://github.com/allenai/scibert) (trained on scientific text)
+     - [BioBERT](https://github.com/dmis-lab/biobert) (trained on bio-medical text)
 
 
 ### Deeper Dive and Resources
@@ -501,74 +444,42 @@ DAI Base BERT model can also be extended for domain specific problems
 
 ## Task 5: Experiment Results Summary
 
-After an experiment status changes from `RUNNING` to `COMPLETE`, the UI provides you with several options:
+If you decided to run the experiment constructed in tasks one and two, it most likely is still running. In that case, whether your experiment is still finishing or you didn't launch the experiment, you can access the pre-built version in the **Experiments** section: 
 
-![experiment-results-ui](assets/experiment-results-ui.jpg)
-
-The Experiment Summary contains a lot of useful information which helps to understand what goes under the hood during the Sentiment Analysis Experiment. If you are interested in learning more about each plot and the metrics derived from those plots covered in this section, then check out this tutorial [Machine Learning Experiment Scoring and Analysis Tutorial - Financial Focus](https://training.h2o.ai/products/tutorial-1b-machine-learning-experiment-scoring-and-analysis-tutorial-financial-focus).
-
-Please note that the lab also provides a pre-ran experiment. You can either wait for your experiments to finish or use the results of the pre-ran experiment. Click on the **Experiments** tab and select the Amazon Fine Food reviews experiment as follows:
+1\. In the **Experiments** section select the experiment with the following name: ```Sentiment Analysis Tutorial```: 
 
 ![pre-ran-experiment](assets/pre-ran-experiment.jpg)
 
-_Things to Note:_
+2\. Let's review the experiment summary page, and let's determine the goodness and efficiency of our built model: 
 
-1. Status Complete Options
-    
-     -  **Deploy:** Whether to deploy the Model to Cloud or keep it local.
-     -  **Interpret this Model** - Refers to  Interpreting a machine learning model  in a human-readable format. 
+![experiment-results-ui](assets/experiment-results-ui.jpg)
 
-
-          Click on `Intrepret this Model` button on the completed experiment page to interpret the  Driverless AI NLP model on original and transformed features. This launches the Model Interpretation for that experiment. This page provides several visual explanations and reason codes for the trained  model and its results. Here we shall only go through the explanation of the NLP specific models. For the rest,refer to the tutorial-[Machine Learning Experiment Scoring and Analysis Tutorial - Financial Focus](https://training.h2o.ai/products/tutorial-1b-machine-learning-experiment-scoring-and-analysis-tutorial-financial-focus).
-
-           - **NLP TOKENS**
-
-          This plot is available for natural language processing (NLP) models. It is located in the Dataset tab on the Model Interpretation page (only visible  for NLP models). It shows both the global and local importance values of each token in a corpus (a large and structured set of texts). The corpus is automatically generated from text features used by Driverless AI models prior to the process of tokenization.
-
-
-           - **NLP LOCO**
-
-           This plot is available for natural language processing (NLP) models. It applies a leave-one-covariate-out (LOCO) styled approach to NLP models by removing a specific token from all text features in a record and predicting local importance without that token. The difference between the resulting score and the original score (token included) is useful when trying to determine how specific changes to text features alter the predictions made by the model.
+- **Things to Note:**</br>
+     **a**. **Interpret this Model** -  this option allows you to understand your model through several Driverless AI and Surrogate Models. As well, this option, when clicked, provides reason codes for the trained model and its results. When running NLP experiments, Driverless AI offers the following visuals through the **Interpret this Model** option: 
+     - The following two plots can be located in the **Dataset** tab on the Model Interpretation page (only visible for NLP models):
+	     - **NLP TOKENS** - this plot is available for natural language processing (NLP) models. It shows both the global and local importance values of each token in a corpus (a large and structured set of texts). The corpus is automatically generated from Driverless AI models' text features prior to the process of tokenization.
+          - **NLP LOCO** - this plot is available for natural language processing (NLP) models. It applies a leave-one-covariate-out (LOCO) styled approach to NLP models by removing a specific token from all text features in a record and predicting local importance without that token. The difference between the resulting score and the original score (token included) is useful when determining how specific changes to text features alter the model's predictions.
         
-     - **Diagnose Model on New Dataset**  - Allows you to view model performance for multiple scorers based on existing model and a test dataset
-     - **Score on another Dataset**  - After you generate a model, you can use that model to make predictions on another dataset.
-     - **Transform Another Dataset** - One can specify to transform the new dataset after adding it to Driverless AI, and the same transformations that Driverless AI applied to the original dataset will be applied to these new rows.
-
-     - **Download Predictions**
-          - **Training (Holdout) Predictions** : In csv format, available if a validation set was NOT provided.
-          - **Validation Set Predictions** : In csv format, available if a validation set was provided.
-          - **Test Set Predictions** : In csv format, available if a test dataset is used.
-     - **Build Python Scoring Pipeline**  - A standalone Python scoring pipeline for H2O Driverless AI
-     - **Build MOJO Scoring Pipeline** - A standalone Model ObJect, Optimized scoring pipeline that can be easily embeddable in java environment'
-     - **Visualize Scoring Pipeline(Experimental)** - Opens an experiment pipeline visualization page. Refer to [Visualizing the Scoring Pipeline](http://docs.h2o.ai/driverless-ai/latest-stable/docs/userguide/scoring_pipeline_visualize.html#visualize-scoring-pipeline).
-     - **Download Summary and Logs**  - An experiment summary is available for each completed experiment as zip file.
-     - **Download AutoReport** - A Word version of an auto-generated report for the experiment. This file is also available in the Experiment Summary zip file.
-
-2. Iteration Data - Validation
-
-      - The winning model's validation score and the algorithm used are as follows:
-           - Validation Score - .2207
-           - Model Type: TEXTBERT
+     **b**. **Iteration Data - Validation**:</br>
+     - The winning model's validation score and the algorithm used are as follows:
+          - Validation Score: **0.2431**
+          - Model Type: **LIGHTGBM**
 
 
-3. Variable Importance: Summary of top 20 - Feature Engineered variables
+     **c**. **Variable Importance** - Summary of top 20 Feature Engineered variables:</br>
 
-     Driverless AI performs feature Engineering on the dataset to determine the optimal representation of the data. Various stages of the features appear throughout the iteration of the data. These can be viewed by hovering over points on the Iteration Data - Validation Graph and seeing the updates on the  **Variable Importance** section.
+     Driverless AI performs feature Engineering on the training dataset to determine the optimal representation of the data. Various stages of the features appear throughout the iteration of the data. These can be viewed by hovering over points on the **Iteration Data - Validation Graph** while the **Variable Importance** section updates its variables accordingly. 
 
- 
-      ![variable-importance](assets/variable-importance.jpg)
+     ![variable-importance](assets/variable-importance.jpg)
 
+     The complete list of features used in the final model is available in the **Experiment Summary** artifacts. The **Experiment Summary** also provides a list of the original features and their estimated feature importance. 
 
-      The complete list of features used in the final model is available in the Experiment Summary artifacts. The Experiment Summary also provides a list of the original features and their estimated feature importance.
+     Looking at the **Variable Importance** section can highlight important variables in NLP experiments. 
 
-4. Summary
-
-     This option gives a brief summary of the entire experiment including :
-
-     -   How many features were tested and selected?
-     -   How many models were trained for feature evolution?
-
-There are also several plots adjacent to the summary tab that give insight into the experiment. If you are interested in learning more about each plot and the metrics derived from those plots covered in this section, then check out our next tutorial [Machine Learning Experiment Scoring and Analysis Tutorial - Financial Focus](https://training.h2o.ai/products/tutorial-1b-machine-learning-experiment-scoring-and-analysis-tutorial-financial-focus).
+     **d**. **Summary**:</br>
+     - This option gives a brief summary of the entire experiment including:
+          
+     There are also several plots adjacent to the summary tab that give insight into the experiment. If you are interested in learning more about each plot and the metrics derived from those plots covered in this section, check out the following tutorial[Machine Learning Experiment Scoring and Analysis - Financial Focus](https://training.h2o.ai/products/tutorial-1b-machine-learning-experiment-scoring-and-analysis-tutorial-financial-focus).
 
 ### Deeper Dive and Resources
 
