@@ -412,7 +412,7 @@ The Driverless AI platform can support both standalone text and text with other 
 - **Word Embeddings**:
      - Driverless AI NLP recipe uses the power of word embeddings where words or phrases from the vocabulary are mapped to vectors of real numbers.
 - **Bi-direction GRU models on Word Embeddings(TensorFlow)**:
-     - A Bi-directional GRU model is like putting two independent RNN models in one. Taking note of accuracy and speed in our experiments, we have decided to take advantage of the high speed and almost similar accuracy of GRU architecture compared to its counterpart LSTM.
+     - A BI-directional GRU model is like putting independent RNN models in one. GRU gives higher speed and almost similar accuracy when compared to its counterpart LSTM. 
 - **Convolution neural network models on:**
      - **Word embeddings followed by CNN model (TensorFlow)**:
           - In Driverless AI, we pass word embeddings as input to CNN models; we get cross-validated predictions from it and use them as a new set of features.
