@@ -83,10 +83,8 @@ In **Aquarium**, the **Driverless AI Test Drive** instance has the **Amazon fine
 
 3\. Let’s take a quick look at the columns of the training dataset:
 
-![dataset-columns-info](assets/dataset-columns-info.jpg)
-
-
 - The dataset consists of 11 columns which are as follows:</br>
+![dataset-columns-info-1](assets/dataset-columns-info-1.jpg)
 **a**. **UserId** - unique identifier for the user</br>
 **b**. **ProductId** - unique identifier for the product</br>
 **c**. **Id** - review ID</br>
@@ -96,6 +94,7 @@ In **Aquarium**, the **Driverless AI Test Drive** instance has the **Amazon fine
 **g**. **ProfileName** - profile name of the user</br>
      
 - Continue scrolling to the right of the page to see more columns (image is not included):</br>
+![dataset-columns-info-2](assets/dataset-columns-info-2.jpg)
 **h**. **HelpfulnessNumerator** - number of users who found the review helpful</br>
 **i**. **Time** - timestamp for the review</br>
 **j**. **Description** - text of the review</br>
@@ -196,11 +195,16 @@ This task deals with settings that will enable us to run an effective NLP experi
 
           **e**. **Select which pretrained PyTorch NLP Model(s) to use**:
                This setting is to be used if you enable the Pytorch Models. When you click on the **Select which pretrained PyTorch NLP Model(s) to use** you can specify one or more pretrained PyTorch NLP models to use from the following list:</br>
-               ![pytorch-pretrained-models](assets/pytorch-pretrained-models.jpg)
-             
-          - This setting requires an Internet connection.
-          - Using BERT-like models may result in a longer experiment completion time.
-          - We will change nothing from this setting. 
+          - bert-base-uncased
+          - distillery-base-uncased
+          - xlnet-base-cased
+          - xlm-mlm-enfr-1024
+          - roberta-base
+          - Albert-base-v2
+          - camembert-base
+          - xlm-roberta-base</br>
+          
+         This setting requires an Internet connection. Using BERT-like models may result in a longer experiment completion time. We will change nothing from this setting. 
 
 6. Additionally, there are three more buttons located beneath the experimental settings knob which stand for the following:
 
@@ -208,15 +212,15 @@ This task deals with settings that will enable us to run an effective NLP experi
           - Make sure this setting is set to **Classification** 
      -  **Reproducible**: This button allows you to build an experiment with a random seed and get reproducible results. If this is disabled (default), the results will vary between runs.
           - Don't enable this setting 
-     -   **Enable GPUs**: Specify whether to enable GPUs. (Note that this option is ignored on CPU-only systems.)
+     -   **GPUS Enable**: Specify whether to enable GPUs. (Note that this option is ignored on CPU-only systems.)
           - Make sure this setting is enable
 
-We selected the above settings to generate a model quickly with sufficient accuracy in the H2O Driverless AI Test Drive environment. At this point, your experiment pre-view page should similarly look as follows: 
+We selected the above settings to generate a model with sufficient accuracy in the **H2O Driverless AI Test Drive environment**. At this point, your experiment pre-view page should similarly look as follows: 
 
 ![final-experiment-launch](assets/final-experiment-launch.jpg)
 
 The amount of time this experiment will take to complete will depend on 
-on the memory, availability of GPU in a system, and the expert settings a user might select. If the system does not have a GPU, it might run for a longer time. You can Launch the Experiment and wait for it to finish, or you can access a pre-build version in the **Experiment*** section. After discussing few NLP concepts in the upcoming two tasks, we will discuss how to access this pre-built experiment right before analyzing its performance. 
+on the memory, availability of GPU in a system, and the expert settings a user might select. If the system does not have a GPU, it might run for a longer time. You can Launch the Experiment and wait for it to finish, or you can access a pre-build version in the **Experiment** section. After discussing few NLP concepts in the upcoming two tasks, we will discuss how to access this pre-built experiment right before analyzing its performance. 
 
 ### Resources
 
@@ -458,10 +462,13 @@ If you decided to run the experiment constructed in tasks one and two, it most l
 ![experiment-results-ui](assets/experiment-results-ui.jpg)
 
 - **Things to Note:**</br>
-     **a**. **Interpret this Model** -  this option allows you to understand your model through several Driverless AI and Surrogate Models. As well, this option, when clicked, provides reason codes for the trained model and its results. When running NLP experiments, Driverless AI offers the following visuals through the **Interpret this Model** option: 
-     - The following two plots can be located in the **Dataset** tab on the Model Interpretation page (only visible for NLP models):
-	     - **NLP TOKENS** - this plot is available for natural language processing (NLP) models. It shows both the global and local importance values of each token in a corpus (a large and structured set of texts). The corpus is automatically generated from Driverless AI models' text features prior to the process of tokenization.
-          - **NLP LOCO** - this plot is available for natural language processing (NLP) models. It applies a leave-one-covariate-out (LOCO) styled approach to NLP models by removing a specific token from all text features in a record and predicting local importance without that token. The difference between the resulting score and the original score (token included) is useful when determining how specific changes to text features alter the model's predictions.
+     **a**. **Interpret this Model** -  this option allows you to understand your model through several Driverless AI and Surrogate Models. As well, this option, provides reason codes for the trained model and its results. When running NLP experiments, Driverless AI offers the following visuals through the **Interpret this Model** option: 
+     - The following two plots can be located in the **NLP** tab on the **MLI Explanations** page (only visible for NLP models):
+     ![nlp-tab](assets/nlp-tab.jpg)
+	     - **NLP Tokenizer Explainer** - this plot is available for natural language processing (NLP) models. It shows both the global and local importance values of each token in a corpus (a large and structured set of texts). The corpus is automatically generated from Driverless AI models' text features prior to the process of tokenization:
+          ![nlp-tokenizer-explainer](assets/nlp-tokenizer-explainer.jpg)
+          - **NLP LOCO Explainer** - this plot is available for natural language processing (NLP) models. It applies a leave-one-covariate-out (LOCO) styled approach to NLP models by removing a specific token from all text features in a record and predicting local importance without that token. The difference between the resulting score and the original score (token included) is useful when determining how specific changes to text features alter the model's predictions:
+          ![nlp-loco-explainer](assets/nlp-loco-explainer.jpg)
         
      **b**. **Iteration Data - Validation**:</br>
      - The winning model's validation score and the algorithm used are as follows:
@@ -471,18 +478,23 @@ If you decided to run the experiment constructed in tasks one and two, it most l
 
      **c**. **Variable Importance** - Summary of top 20 Feature Engineered variables:</br>
 
-     Driverless AI performs feature Engineering on the training dataset to determine the optimal representation of the data. Various stages of the features appear throughout the iteration of the data. These can be viewed by hovering over points on the **Iteration Data - Validation Graph** while the **Variable Importance** section updates its variables accordingly. 
+     - Driverless AI performs feature Engineering on the training dataset to determine the optimal representation of the data. Various stages of the features appear throughout the iteration of the data. These can be viewed by hovering over points on the **Iteration Data - Validation Graph** while the **Variable Importance** section updates its variables accordingly. 
 
-     ![variable-importance](assets/variable-importance.jpg)
+     
+     <p align="center">
+    <img src="assets/variable-importance.jpg" width="435" height="400"> 
+     </p>
 
-     The complete list of features used in the final model is available in the **Experiment Summary** artifacts. The **Experiment Summary** also provides a list of the original features and their estimated feature importance. 
-
-     Looking at the **Variable Importance** section can highlight important variables in NLP experiments. 
+     - The complete list of features used in the final model is available in the **Experiment Summary** artifacts. The **Experiment Summary** also provides a list of the original features and their estimated feature importance. 
+     - Looking at the **Variable Importance** section can highlight important variables in NLP experiments. 
 
      **d**. **Summary**:</br>
      - This option gives a brief summary of the entire experiment including:
-          
-     There are also several plots adjacent to the summary tab that give insight into the experiment. If you are interested in learning more about each plot and the metrics derived from those plots covered in this section, check out the following tutorial[Machine Learning Experiment Scoring and Analysis - Financial Focus](https://training.h2o.ai/products/tutorial-1b-machine-learning-experiment-scoring-and-analysis-tutorial-financial-focus).
+          - The number of features tested and selected 
+          - The models that Driverless AI trained for feature evolution 
+     - There are also several plots adjacent to the summary tab that give insight into the experiment. If you are interested in learning more about each plot and the metrics derived from those plots, check out the following tutorial: [Machine Learning Experiment Scoring and Analysis - Financial Focus](https://training.h2o.ai/products/tutorial-1b-machine-learning-experiment-scoring-and-analysis-tutorial-financial-focus).
+
+In the next task, let's explore how custom recipes can improve predictions; in other words, let's discover how custom recipes can decrease the value of LOGLOSS (in our current observe experiment). 
 
 ### Deeper Dive and Resources
 
@@ -496,83 +508,79 @@ If you decided to run the experiment constructed in tasks one and two, it most l
 
 ## Task 6: Custom Recipe to Improve Predictions
 
-The latest version(1.9.0) of Driverless AI implements a key feature called BYOR[1], which stands for Bring Your Own Recipes and was introduced in with Driverless AI (1.7.0). This feature has been designed to enable Data Scientists or domain experts to influence and customize the machine learning optimization used by Driverless AI as per their business needs. This additional feature engineering technique is aimed towards improving the accuracy of the model.
+The latest version(1.9.0) of Driverless AI implements a key feature called BYOR[1], which stands for Bring Your Own Recipes, and was introduced with Driverless AI (1.7.0). This feature has been designed to enable Data Scientists or domain experts to influence and customize the machine learning optimization used by Driverless AI as per their business needs. This additional feature engineering technique is aimed at improving the accuracy of the model.
 
-Recipes are customizations and extensions to the Driverless AI platform. TThey are nothing but Python code snippets uploaded into Driverless AI at runtime, like plugins. Recipes can be either one or a combination of the following:
+Recipes are customizations and extensions to the Driverless AI platform. They are nothing but Python code snippets uploaded into Driverless AI at runtime, like plugins. Recipes can be either one or a combination of the following:
 
--   Custom machine learning models
--   Custom scorers (classification or regression)
--   Custom transformers  
+- Custom machine learning models
+- Custom scorers (classification or regression)
+- Custom transformers 
 
 ![recipes-workflow](assets/recipes-workflow.jpg)
 
 ### Uploading a Custom Recipe
 
-H2O has built and open-sourced several recipes[2] which can be used as templates. For this experiment, we shall use the following recipe: [text_sentiment_transformer.py](https://github.com/h2oai/driverlessai-recipes/blob/master/transformers/nlp/text_sentiment_transformer.py) which extracts sentiment from text using pre-trained models from TextBlob[3].
+H2O has built and open-sourced several recipes[2], which can be used as templates. For this experiment, we shall use the following recipe: [text_sentiment_transformer.py](https://github.com/h2oai/driverlessai-recipes/blob/master/transformers/nlp/text_sentiment_transformer.py) which extracts sentiment from text using pre-trained models from TextBlob[3].
 
-1\. Start a new Driverless AI experiment as explained in Task 1 and Task 2 and click on the Expert Settings.
+1\. In the **Experiments** section, click on the three dots next to the tutorial: ```Sentiment Analysis```.  In it, select the following option: **New Model with Same Params**. The following will appear: 
 
 ![clickon-expert-settings](assets/clickon-expert-settings.jpg)
 
-2\. A new window with Expert Experiment Settings pops up. Here you can either upload a custom recipe or load custom recipe from url.
+- Click on the **Expert Settings** option 
 
-![expert-experiment-settings-overview](assets/expert-experiment-settings-overview.jpg)
+2\. A new window with Expert Experiment Settings pops up. Here you can either upload a custom recipe or load a custom recipe from a URL:
 
-3\. To upload a custom recipe, Click on the UPLOAD CUSTOM RECIPE tab and select the desired recipe. Click save when done.
+![expert-experiment-settings-overview-1](assets/expert-experiment-settings-overview-1.jpg)
 
+3\. The first way to upload a custom recipe is by clicking on the **+ UPLOAD CUSTOM RECIPE** button(a): this option allows you to upload custom recipes located on your computer. We will not use this option. 
 
-4\. Alternately, you can also upload a recipe via URL. Click on the LOAD CUSTOM RECIPE FROM URL tab and enter the raw Github URL of the recipe. Click save when done
+4\. The second way to upload a custom recipe is by clicking on the **+ LOAD CUSTOM RECIPE FROM URL** button(b): this option allows you to upload a recipe located on Github. We will use this option. Click this(b) option and paste the following custom recipe: 
     
 ```
 https://raw.githubusercontent.com/h2oai/driverlessai-recipes/rel-1.9.1/transformers/nlp/text_sentiment_transformer.py
 ```
-  
-![uploading-recipe-from-url](assets/uploading-recipe-from-url.jpg)
 
-5\. You’re welcome to create your own recipes, or you can select from a number of available recipes.  The OFFICIAL RECIPES(EXTERNAL) tab will directly take you to the recipes compatible with the Driverless AI version that you are using.
-
-![official-recipes](assets/official-recipes.jpg)
-
-6\. Once the recipe is uploaded, the following screen will appear. Driverless AI automatically performs basic acceptance tests for all custom recipes unless disabled.
+5\.  While the recipe is uploading, the following will appear(Driverless AI automatically performs basic acceptance tests for all custom recipes(this can de enable/disable): 
 
 ![acceptance-tests](assets/acceptance-tests.jpg)
 
-7\. Click on Recipe and select or deselect specific transformers, models and scorers.
+
+6\.Driverless AI offers several available recipes that can be accessed when clicking on the **OFFICIAL RECIPES(OPEN SOURCE)** button(c):
+
+![official-recipes](assets/official-recipes.jpg)
+
+7\.Whenever you use a recipe, you have access to the following recipe settings located in the **Recipes** tab(e.g., transformers, models, scorers): 
 
 ![selecting-specific-transformers](assets/selecting-specific-transformers.jpg)
 
-*Things to Note*
+- **Things to Note**:</br>
+a. Include specific transformers</br> 
+b. Include specific models</br>
+c. Include specific data recipes during experiment</br>
+d. Whether to skip failures of transformers</br>
+e. Include specific scorers</br>
+f. Scorer to optimize threshold to be used in other confusion-matrix based scorers(for binary classification)</br>
+g. Enable if you want to skip failure of transformers(whether to skip failures of models)</br> 
+h. Enable if you want to skip failure of models(Include specific preprocessing transformers)
+    
 
-1. Select specific Transformers
+- We will not change nothing in the **Recipes** tab 
     
-2. Select specific Models
-    
-3. Select specific Scorers
+8\. Click **Save**. The selected transformer should now appear on the main Experiment screen as follows:
 
-4. Include specific preprocessing Transformers
 
-5. Include specific data recipes during experiment
-
-6. Scorer to optimize threshold
+<p align="center">
+    <img src="assets/main-screen-after-expert-settings.jpg" width="380"> 
     
-7. Enable if you want to skip failure of transformers
-    
-8. Enable if you want to skip failure of models
-    
-    
-8\. Click Save to save the settings. The selected transformer should now appear on the main Experiment screen as follows.
-
-![main-screen-after-expert-settings](assets/main-screen-after-expert-settings.jpg)
+</p>
 
 9\. Launch the Experiment with the Custom Recipe.
 
 ### References
 
-[1] [Custom Machine Learning Recipes: The ingredients for success](https://www.h2o.ai/blog/custom-machine-learning-recipes-the-ingredients-for-success/)
-
-[2] [Driverless AI Recipes](https://github.com/h2oai/driverlessai-recipes)
-
-[3] [TextBlob](https://textblob.readthedocs.io/en/dev/)
+- [1] [Custom Machine Learning Recipes: The ingredients for success](https://www.h2o.ai/blog/custom-machine-learning-recipes-the-ingredients-for-success/)
+- [2] [Driverless AI Recipes](https://github.com/h2oai/driverlessai-recipes)
+- [3] [TextBlob](https://textblob.readthedocs.io/en/dev/)
 
 ### Deeper Dive and Resources
 
@@ -582,9 +590,9 @@ https://raw.githubusercontent.com/h2oai/driverlessai-recipes/rel-1.9.1/transform
 
 It's time to test your skills!
 
-The challenge is to analyze and perform Sentiment Analysis on the tweets using the US Airline Sentiment dataset. This will help to gauge people's sentiments about each of the major U.S. airline.
+The challenge is to analyze and perform Sentiment Analysis on the tweets using the US Airline Sentiment dataset. This dataset will help to gauge people's sentiments about each of the major U.S. airlines.
 
-This data comes from  [Crowdflower's Data for Everyone library](http://www.crowdflower.com/data-for-everyone)  and constitutes twitter reviews about how travellers in February 2015 expressed their feelings on Twitter about every major U.S. airline. The reviews have been classified as positive, negative, and neutral.
+This data comes from [Crowdflower's Data for Everyone library](http://www.crowdflower.com/data-for-everyone) and constitutes Twitter reviews about how travelers in February 2015 expressed their feelings on Twitter about every major U.S. airline. The reviews have been classified as positive, negative, and neutral.
 
 ### Steps:
 
@@ -596,18 +604,18 @@ Here are some samples from the dataset:
 
 ![challenge-dataset](assets/challenge-dataset.jpg)
 
-2\. Split the dataset into a training set and a testing set in an 80:20 ratio.
+2\. Split the dataset into a training set and a testing set in an **80:20** ratio.
 
-3\. Run an experiment where the target column is "**airline_sentiment**" using only the default Transformers. You can exclude all other columns from the dataset except the ‘text' column.
+3\. Run an experiment where the target column is **airline_sentiment** using only the default Transformers. You can exclude all other columns from the dataset except the 'text' column.
 
-4\. Run another instance of the same experiment but this time also include Tensorflow models in addition to the built in transformers.
+4\. Run another instance of the same experiment, but this time include the Tensorflow models and the built-in transformers.
 
 5\. Next, repeat the experiment with a custom recipe from [here](https://github.com/h2oai/driverlessai-recipes/blob/master/README.md#sample-recipes).
 
-6\. Using Logloss as the scorer, observe the following outcomes:
+6\. Using **Logloss** as the scorer, observe the following outcomes:
 
 - Which experiment out of the three gives the minimum Logloss value and why?
-- How variable importance changes as you change the selected transformers.
+- How variable importance change as you change the selected transformers? 
 
 ### Deeper Dive and Resources
 
@@ -617,32 +625,36 @@ Here are some samples from the dataset:
 
 ### Add the Datasets
 
-Import Amazon Fine Food Reviews training and test datasets to the Datasets Overview Page.
+Consider the following steps to import the training and test **Amazon Fine Food Reviews** datasets: 
 
-1\. Select +Add Dataset(or Drag and Drop) then click on File System
+1\. Select **+ Add Dataset(or Drag and Drop)** then click on the following option: **File System**:
 
 ![appendix-add-datasets](assets/appendix-add-datasets.jpg)
 
-2\. Enter the following : `data/Kaggle/AmazonFineFoodReviews/` into the search bar
+2\. Enter the following into the search bar: `data/Kaggle/AmazonFineFoodReviews/`.
 
-3\. Select AmazonFineFoodReviews’ training and test datasets.
+3\. Select the follwing two datasets: 
 
 ![appendix-datasets-preview](assets/appendix-datasets-preview.jpg)
 
-4\. Click to Import Selection
+4\. Right after, cick the following button: **Click to Import Selection**.
 
-5\. If the file loaded successfully then the following image should appear on the screen
+5\. If the file loaded successfully, then the two datasets will be display in the **Datasets** page: 
 
 ![appendix-upload-dataset](assets/appendix-upload-dataset.jpg)
 
-You can see that a new set of datasets now appear on the screen.
+
 
 ## Next Steps
 
-Check out the [Get Started with Open Source Custom Recipes](https://training.h2o.ai/products/tutorial-3a-get-started-with-open-source-custom-recipes-tutorial) tutorial, where you will learn:
+Check out the following tutorial in the learning path:  [Get Started with Open Source Custom Recipes](https://training.h2o.ai/products/tutorial-3a-get-started-with-open-source-custom-recipes-tutorial). In it, you will learn the following: 
 
-- What is Bring Your Own Recipe
-- What is a recipe
+- What is Bring Your Own Recipe?
+- What is a recipe?
 - Types of Driverless AI open-source recipes available
-- How to upload the recipes into Driverless AI as raw URL’s and .py files
-- Compared the final models of the experiments that were run with custom recipes to Driverless AI’s default settings experiment
+- How to upload the recipes into Driverless AI as raw **URL’s** and **.py** files
+- Analyze models that made use of custom recipes 
+
+
+
+
