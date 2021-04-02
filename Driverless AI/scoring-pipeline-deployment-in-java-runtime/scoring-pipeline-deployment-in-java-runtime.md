@@ -14,7 +14,7 @@
 
 ## Objective
 
-**Machine Learning Model Deployment** is the process of making your model available in production environments, so it can be used to make predictions for other software systems [1]. Before model deployment, **feature engineering** occurs in preparing data that will later be used to train a model [2]. Driverless AI **Automatic Machine Learning (AutoML)** combines the best feature engineering and one or more **machine learning models** into a scoring pipeline [3][4]. The **scoring pipeline** is used to score or predict data when given new test data [5]. The **scoring pipeline** comes in two flavors. The first scoring pipeline is a **Model Object, Optimized(MOJO) Scoring Pipeline**, a standalone, low-latency model object designed to be easily embeddable in production environments. The second scoring pipeline is a Python Scoring Pipeline, which has a heavy footprint that is all Python and uses the latest libraries of Driverless AI to allow for executing custom scoring recipes[6].
+**Machine Learning Model Deployment** is the process of making your model available in production environments, so it can be used to make predictions for other software systems [1]. Before model deployment, **feature engineering** occurs in preparing data that will later be used to train a model [2]. Driverless AI **Automatic Machine Learning (AutoML)** combines the best feature engineering and one or more **machine learning models** into a scoring pipeline [3][4]. The **scoring pipeline** is used to score or predict data when given new test data [5]. The **scoring pipeline** comes in two flavors. The first scoring pipeline is a **Model Object Optimized(MOJO) Scoring Pipeline**, a standalone, low-latency model object designed to be easily embeddable in production environments. The second scoring pipeline is a Python Scoring Pipeline, which has a heavy footprint that is all Python and uses Driverless AI's latest libraries to allow for executing custom scoring recipes[6].
 
 For this tutorial, we will continue making use of the prebuilt experiment: **Model_deployment_HydraulicSystem.**  The Driverless AI  experiment is a classifier model that classifies whether the **cooling condition** of a **Hydraulic System Test Rig** is 3, 20, or 100. By looking at the **cooling condition,** we can predict whether the Hydraulic Cooler operates **close to total failure**, **reduced efficiency**, or **full efficiency**. 
 
@@ -24,34 +24,30 @@ For this tutorial, we will continue making use of the prebuilt experiment: **Mod
 | 20 | operates at reduced efficiency |
 | 100 | operates at full efficiency |
 
-The Hydraulic System Test Rig data for this tutorial comes from the **[UCI Machine Learning Repository: Condition Monitoring of Hydraulic Systems Data Set](https://archive.ics.uci.edu/ml/datasets/Condition+monitoring+of+hydraulic+systems#)**. The data set was experimentally obtained with a hydraulic test rig. This test rig consists of a primary working and a secondary cooling-filtration circuit connected via the oil tank [7]. The system cyclically repeats constant load cycles (duration 60 seconds) and measures process values such as pressures, volume flows, and temperatures. The condition of four hydraulic components (cooler, valve, pump, and accumulator) is quantitatively varied. The data set contains raw process sensor data (i.e., without feature extraction), structured as matrices (tab-delimited) with the rows representing the cycles and the columns the data points within a cycle.
-Hydraulic System Test Rigs are used to test Aircraft Equipment components, Automotive Applications, and more [8]. A Hydraulic Test Rig can test a range of flow rates that can achieve different pressures with the ability to heat and cool while simulating testing under different conditions [9]. Testing the pressure, the volume flow, and the temperature is possible by Hydraulic Test Rig sensors and a digital display. The display panel alerts the user when certain testing criteria are met while displaying either a green or red light [9]. Further, a filter blockage panel indicator is integrated into the panel to ensure the Hydraulic Test Rig's oil is maintained [9]. In the case of predicting cooling conditions for a Hydraulic System, when the cooling condition is low, our prediction will tell us that the cooling of the Hydraulic System is close to total failure, and we may need to look into replacing the cooling filtration solution soon. 
+The Hydraulic System Test Rig data for this tutorial comes from the **[UCI Machine Learning Repository: Condition Monitoring of Hydraulic Systems Dataset](https://archive.ics.uci.edu/ml/datasets/Condition+monitoring+of+hydraulic+systems#)**. The dataset was experimentally obtained with a hydraulic test rig. This test rig consists of a primary working and a secondary cooling-filtration circuit connected via the oil tank [7]. The system cyclically repeats constant load cycles (duration 60 seconds) and measures process values such as pressures, volume flows, and temperatures. The data set contains raw process sensor data (i.e., without feature extraction), structured as matrices (tab-delimited) with the rows representing the cycles and the columns the data points within a cycle. Hydraulic System Test Rigs are used to test Aircraft Equipment components, Automotive Applications, and more [8]. A Hydraulic Test Rig can test a range of flow rates that can achieve different pressures with the ability to heat and cool while simulating testing under different conditions [9]. Testing the pressure, the volume flow, and the temperature is possible by Hydraulic Test Rig sensors and a digital display. The display panel alerts the user when certain testing criteria are met while displaying either a green or red light [9]. Further, a filter blockage panel indicator is integrated into the panel to ensure the Hydraulic Test Rig's oil is maintained [9]. In the case of predicting cooling conditions for a Hydraulic System, when the cooling condition is low, our prediction will tell us that the cooling of the Hydraulic System is close to total failure, and we may need to look into replacing the cooling filtration solution soon.
 
-![cylinder-diagram-1](assets/cylinder-diagram-1.png)
+
+<p align="center"> 
+    <img src='assets/cylinder-diagram-1.png'></img>    
+    <p align="center">Figure 1. Hydraulic System Cylinder Diagram</p>
+</p>
 
 By the end of this tutorial, you will predict the **cooling condition** for a **Hydraulic System Test Rig** by deploying an **embeddable MOJO Scoring Pipeline** into **Java Runtime** using **Java**, **Sparkling Water**, and **PySparkling**. 
 
-**Figure 1:** Hydraulic System Cylinder Diagram
+
 
 ### References
 
-[1] H2O.ai Community AI Glossary: [Machine Learning Model Deployment](https://www.h2o.ai/community/glossary/machine-learning-model-deployment-productionization-productionizing-machine-learning-models)
-
-[2] H2O.ai Community AI Glossary: [Feature Engineering](https://www.h2o.ai/community/glossary/feature-engineering-data-transformation)
-
-[3] H2O.ai Community AI Glossary: [Automatic Machine Learning (AutoML)](https://www.h2o.ai/community/glossary/automatic-machine-learning-automl)
-
-[4] H2O.ai Community AI Glossary: [Machine Learning Model](https://www.h2o.ai/community/glossary/machine-learning-model)
-
-[5] H2O.ai Community AI Glossary: [Scoring Pipeline](https://www.h2o.ai/community/glossary/scoring-pipeline)
-
-[6] H2O.ai Community AI Glossary: [Model Object, Optimized (MOJO) Scoring Pipeline](https://www.h2o.ai/community/glossary/model-object-optimized-mojo)
-
-[7] [Condition monitoring of hydraulic systems Data Set](https://archive.ics.uci.edu/ml/datasets/Condition+monitoring+of+hydraulic+systems#)
-
-[8] [SAVERY - HYDRAULIC TEST RIGS AND BENCHES](https://www.savery.co.uk/systems/test-benches)
-
-[9] [HYDROTECHNIK - Flow and Temperature Testing Components](https://www.hydrotechnik.co.uk/flow-and-temperature-hydraulic-test-bed)
+- [1] H2O.ai Community AI Glossary: [Machine Learning Model Deployment](https://www.h2o.ai/community/glossary/machine-learning-model-deployment-productionization-productionizing-machine-learning-models)
+- [2] H2O.ai Community AI Glossary: [Feature Engineering](https://www.h2o.ai/community/glossary/feature-engineering-data-transformation)
+- [3] H2O.ai Community AI Glossary: [Automatic Machine Learning (AutoML)](https://www.h2o.ai/community/glossary/automatic-machine-learning-automl)
+- [4] H2O.ai Community AI Glossary: [Machine Learning Model](https://www.h2o.ai/community/glossary/machine-learning-model)
+- [5] H2O.ai Community AI Glossary: [Scoring Pipeline](https://www.h2o.ai/community/glossary/scoring-pipeline)
+- [6] H2O.ai Community AI Glossary: [Model Object, Optimized (MOJO) Scoring Pipeline](https://www.h2o.ai/community/glossary/model-object-optimized-mojo)
+- [7] [Condition monitoring of hydraulic systems Dataset](https://archive.ics.uci.edu/ml/datasets/Condition+monitoring+of+hydraulic+systems#)
+- [8] [SAVERY - HYDRAULIC TEST RIGS AND BENCHES](https://www.savery.co.uk/systems/test-benches)
+- [9] [HYDROTECHNIK - Flow and Temperature Testing Components](https://www.hydrotechnik.co.uk/flow-and-temperature-hydraulic-test-bed)
+- [Figure 1: Hydraulic System Cylinder Diagram](https://www.hydracheck.com/hydraulic-cylinder-rod-travel-slower-normal-find-problem-pressure-gauge-flow-meter/)
 
 ## Prerequisites
 
@@ -82,18 +78,13 @@ Download MOJO Scoring Pipeline
 1\. If you have not downloaded the MOJO Scoring Pipeline, consider the following steps: 
 
 - Start a new **Two-Hour Test Drive session** in Aquarium 
-
 - In your Driverless AI instance, click on the **Experiments** section 
-
 - In the Experiments section, click on the following experiment: **Model_deployment_HydraulicSystem**
-
 - On the **STATUS: COMPLETE** section on the  experiment page, click **DOWNLOAD MOJO SCORING PIPELINE**
-
 - In the Java tab, click **DOWNLOAD MOJO SCORING PIPELINE**
+- When finished, come back to this tutorial. 
 
-When finished, come back to this tutorial. 
-
-2\. Move the mojo.zip file to the `dai-mojo-java/` folder and then extract it: 
+2\. Move the mojo.zip file to the `dai-mojo-java` folder and then extract it: 
 
 ```bash
 cd $HOME/dai-mojo-java/
@@ -107,13 +98,13 @@ unzip mojo.zip
 3\. Download and install Anaconda:
 
 ```bash
-# Download Anaconda (Note: the command is for a Linux environment)
+# Download Anaconda (Note: the command below is for a Linux environment)
 wget https://repo.anaconda.com/archive/Anaconda3-2020.02-Linux-x86_64.sh
 
-# Install Anaconda (Note: the command is for a Linux environment)
+# Install Anaconda (Note: the below command is for a Linux environment )
 bash Anaconda3-2020.02-Linux-x86_64.sh
 
-# (Mac)) To Download and Install Anaconda follow the steps on this link: https://docs.anaconda.com/anaconda/install/mac-os/
+# (Mac)) To Download and Install Anaconda for Mac follow the steps on this link: https://docs.anaconda.com/anaconda/install/mac-os/
 ```
 
 4\. Create virtual environment and install required packages:
@@ -139,7 +130,7 @@ pip install numpy
 
 5\. Set the Driverless AI License Key as a temporary environment variable:
 
-Note: If you don't have a license, you can obtain one through our [21-day trial license](https://www.h2o.ai/try-driverless-ai/) option. Note: Aquarium will not contain a **Driverless AI License Key**. Through the [21-day trial license](https://www.h2o.ai/try-driverless-ai/) option, you will be able to obtain a temporary **Driverless AI License Key** necessary for this tutorial. 
+**Note**: Aquarium will not contain a **Driverless AI License Key**. Through the [21-day trial license](https://www.h2o.ai/try-driverless-ai/) option, you will be able to obtain a temporary **Driverless AI License Key** necessary for this tutorial. 
 
 ```bash
 # Set Driverless AI License Key
@@ -148,11 +139,11 @@ export DRIVERLESS_AI_LICENSE_KEY="{license-key}"
 
 ### Install Sparkling Water and Sparks
 
-1\.Download and install **Spark** if not already installed from [Sparks Download page](https://spark.apache.org/downloads.html).
+1\.Download and install **Spark** if not already installed from the [Sparks Download page](https://spark.apache.org/downloads.html):
 
-   - Choose Spark release **3.0.1**
+   - Choose Spark release: **3.0.1**
 
-   - Choose package type: Pre-built for Apache Hadoop 2.7 and later
+   - Choose package type: **Pre-built for Apache Hadoop 2.7 and later**
 
 2\. Point SPARK_HOME to the existing installation of Spark and export variable MASTER.
 
@@ -177,7 +168,7 @@ cd sparkling-water-3.30.1.2-1-3.0
 
 ### MOJO Scoring Pipeline Files
 
-After downloading the MOJO scoring pipeline, the **mojo-pipeline** folder comes with many files. The files needed to execute the MOJO scoring pipeline are as follows: **pipeline.mojo**, **mojo2-runtime.jar**, and **example.csv**. As well, in the **mojo-pipeline** folder, we can find the following file that helps run the pipeline relatively quickly: **run_example.sh**. Further, the **mojo-pipeline** folder contains the **pipeline.mojo** file, which is the standalone scoring pipeline in MOJO format. This pipeline file contains the packaged feature engineering pipeline and the machine learning model. Further, the folder also includes a jar name **mojo2-runtime.jar**, the MOJO Java API. And to test our code, the file has a CSV name **example.csv** containing sample test data. 
+After downloading the MOJO scoring pipeline, the **mojo-pipeline** folder comes with many files. The files needed to execute the MOJO scoring pipeline are as follows: **pipeline.mojo**, **mojo2-runtime.jar**, and **example.csv**. As well, in the **mojo-pipeline** folder, we can find the following file that helps run the pipeline relatively quickly: **run_example.sh**. Further, the **mojo-pipeline** folder contains the **pipeline.mojo** file, which is the standalone scoring pipeline in MOJO format. This pipeline file contains the packaged feature engineering pipeline and the machine learning model.  Further, the folder also includes a jar name **mojo2-runtime** (the MOJO Java API). And to test our code, the file has a CSV name **example** containing sample test data. 
 
 ### Embedding the MOJO into the Java Runtime
 
@@ -192,11 +183,11 @@ If you have gone through the earlier scoring pipeline deployment tutorials, you 
 
 You will execute the MOJO scoring pipeline in the Java Runtime Environment using Java, PySparkling, and Sparkling Water.
 
-### Batch Scoring Through the Run Executemojo Java Example
+### Batch Scoring Through the Run ExecuteMojo Java Example
 
 You will run the **run_example.sh** script that came with the mojo-pipeline folder. This script requires the mojo file, CSV file, and license file. It runs the Java **ExecuteMojo** example program, and the mojo makes predictions for a batch of Hydraulic cooling conditions.
 
-Since we already have our license file path specified as an environment variable, we will pass in the path to the following three files: run_example.sh, pipeline.mojo, and example.csv. Right after, we will run them to get our predictions. 
+Since we already have our license file path specified as an environment variable, we will pass in the path to the following three files: **run_example.sh**, **pipeline.mojo**, and **example.csv**. Right after, we will run them to get our predictions:
 
 ```bash
 cd $HOME/dai-mojo-java/mojo-pipeline/
@@ -210,11 +201,11 @@ This classification output is the batch scoring done for our Hydraulic System co
 
 The results will give you a probability (a decimal value) for cool_cond_y.3, cool_cond_y.20, and cool_cond_y.100. After converting each decimal value to a percentage, note that the highest percentage per row will determine the type of cool_cond_y for that row.
 
-Similarly, we could execute **run_example.sh** without passing arguments to it by creating temporary environment variables for the mojo pipeline file and an example CSV file path.
+Similarly, we could execute **run_example.sh** without passing arguments to it by creating temporary environment variables for the mojo pipeline file and an example CSV file path:
 
 ```bash
-export MOJO_PIPELINE_FILE="$HOME/dai-mojo-java/mojo-pipeline/pipeline.mojo”
-export EXAMPLE_CSV_FILE="$HOME/dai-mojo-java/mojo-pipeline/example.csv”
+export MOJO_PIPELINE_FILE="$HOME/dai-mojo-java/mojo-pipeline/pipeline.mojo"
+export EXAMPLE_CSV_FILE="$HOME/dai-mojo-java/mojo-pipeline/example.csv"
 ```
 Now execute the **run_example.sh**, and you should get similar results as above.
 
@@ -255,6 +246,7 @@ import os.path
 from pysparkling.ml import H2OMOJOPipelineModel,H2OMOJOSettings
 ```
 
+
 We configured the H2O MOJO Settings to ensure the output columns are appropriately named. Now we will load the MOJO scoring pipeline:
 
 ```java
@@ -270,7 +262,7 @@ mojo = H2OMOJOPipelineModel.createFromMojo(homePath + "/dai-mojo-java/mojo-pipel
 Next, load the example CSV data as a Spark’s DataFrame
 
 ```java
-# Load the data as Spark's Data Frame
+# Load the data as Spark Data Frame
 dataFrame = spark.read.csv(homePath + "/dai-mojo-java/mojo-pipeline/example.csv", header=True)
 ```
 
