@@ -78,37 +78,39 @@ mkdir $HOME/dai-mojo-cpp/
 - In the Experiments section, click on the following experiment: **Model_deployment_HydraulicSystem**
 - On the **STATUS:COMPLETE** section on the experiment page, click **DOWNLOAD MOJO SCORING PIPELINE**
 - In the **Java** tab, click **DOWNLOAD MOJO SCORING PIPELINE**
-
-When finished, come back to this tutorial. 
+- When finished, come back to this tutorial. 
 
 2\. Move the **mojo.zip** file to the **dai-mojo-cpp** folder and then extract it:
 
 ```bash
 cd $HOME/dai-mojo-cpp/
-# Depending on your OS, sometimes the mojo.zip is unzipped automatically and therefore, instead of mojo.zip, write mojo-pipeline for the first command. If it's mojo-pipeline no need to execute the unzip command.  
+# Depending on your OS, sometimes the mojo.zip is unzipped 
+# automatically and therefore, instead of mojo.zip, write 
+# mojo-pipeline for the first command. If it's mojo-pipeline no need
+# to execute the unzip command.  
 mv $HOME/Downloads/mojo.zip .
 unzip mojo.zip
 ```
 
 #### Download the MOJO2 Python and R Runtime
 
-We can download the **MOJO2 C++ Runtime Python Wrapper API and R Wrapper API** in Driverless AI. There are two places where we can download the MOJO2 Python and R runtime. 
+We can download the **MOJO2 C++ Runtime Python Wrapper API** and **R Wrapper API** in Driverless AI. There are two places where we can download the MOJO2 Python and R runtime. 
 
-1\. Similar to where we downloaded the **MOJO SCORING PIPELINE**, we will download the **MOJO2 Py Runtime**.   Instead of clicking on the **Java** tab, click on the **Python** tab. Right after, click on the **Download the MOJO2 Py Runtime** hyperlink. Select the type of download you want, depending on your OS. 
+1\. Similar to where we downloaded the **MOJO SCORING PIPELINE**, we will download the **MOJO2 Py Runtime**.   Instead of clicking on the **Java** tab, click on the **Python** tab. Right after, click on the **Download the MOJO2 Py Runtime** hyperlink. Select the type of download you want, depending on your OS: 
 
 ![download-mojo2-py-runtime-1](assets/download-mojo2-py-runtime-1.png)
 
-Similar for the **MOJO2 R runtime**, click the **R** tab, then click the **Download the MOJO2 R Runtime** hyperlink. Select the type of download you want, depending on your OS. 
+Similar for the **MOJO2 R runtime**, click the **R** tab, then click the **Download the MOJO2 R Runtime** hyperlink. Select the type of download you want, depending on your OS: 
 
 ![download-mojo2-r-runtime-2](assets/download-mojo2-r-runtime-2.png)
 
-2\. The second place you can find these runtimes is under the **Resources** drop-down list.
+2\. The second place you can find these runtimes is under the **Resources** drop-down list:
 
 ![download-mojo2-py-r-runtime-3](assets/download-mojo2-py-r-runtime-3.png)
 
-Click **MOJO2 Py Runtime** and/or **MOJO2 R Runtime** to download the runtime.
+Click **MOJO2 Py Runtime** and **MOJO2 R Runtime** to download the Py and R Runtime. 
 
-Now that you have downloaded the **MOJO2 C++ Runtime Python Wrapper API and R Wrapper API**, download and install Anaconda:
+Now that you have downloaded the **MOJO2 C++ Runtime Python Wrapper API** and **R Wrapper API**, download and install Anaconda:
 
 ```bash
 # Download Anaconda (Note: the command is for a Linux environment)
@@ -120,7 +122,10 @@ bash Anaconda3-2020.02-Linux-x86_64.sh
 # (Mac)) To Download and Install Anaconda follow the steps on this link: https://docs.anaconda.com/anaconda/install/mac-os/
 ```
 
-Move the **MOJO2 Py Runtime** file to the $HOME folder:
+
+Now before we move forward with our tutorial: 
+
+- Move the **MOJO2 Py Runtime** file to the **$HOME** folder:
 
 ```bash
 cd $HOME
@@ -136,12 +141,12 @@ mv $HOME/Downloads/daimojo-2.4.8-cp36-cp36m-linux_ppc64le.whl .
 ```
 
 
-Move the **MOJO2 R Runtime** file to $HOME folder:
+- Move the **MOJO2 R Runtime** file to **$HOME** folder:
 
 ```bash
 cd $HOME
 # If you have a Mac, move the MOJO2 R runtime for Mac OS X to the $HOME folder
-mv $HOME/Downloads/daimojo_2.4.8_x86_64-darwin.tar.gz .
+mv $HOME/Downloads/daimojo_2.5.8_x86_64-darwin.tar.gz .
  
 # If you have Linux, move the MOJO2 R runtime for Linux x86 to the $HOME folder
 mv $HOME/Downloads/daimojo_2.4.8_x86_64-linux.tar.gz .
@@ -161,7 +166,7 @@ conda create -y -n model-deployment python=3.6
 conda activate model-deployment
 ```
 
-Install Python Packages
+Install Python Packages:
 
 ```bash
 # Install Python Packages
@@ -204,7 +209,7 @@ conda install -y -c r r-data.table
 
 Set the Driverless AI License Key as a temporary environment variable.
 
-**Note**: If you don't have a license, you can obtain one through our [21-day trial license](https://www.h2o.ai/try-driverless-ai/) option. Through the [21-day trial license](https://www.h2o.ai/try-driverless-ai/) option, you will be able to obtain a temporary **Driverless AI License Key** necessary for this tutorial. 
+**Note**: If you don't have a license, you can obtain one through our [21-day trial license](https://www.h2o.ai/try-driverless-ai/) option. Through the [21-day trial license](https://www.h2o.ai/try-driverless-ai/) option, you will be able to obtain a temporary **Driverless AI License Key** necessary for this tutorial: 
 
 ```bash
 # Set Driverless AI License Key
@@ -252,7 +257,7 @@ path <- paste(homePath, "/daimojo_2.4.8_x86_64-linux.tar.gz", sep="")
 install.packages(path, repos = NULL, type="source")
 
 #Install the R MOJO runtime on Mac OS X
-path <- paste(homePath, "/daimojo_2.4.8_x86_64-darwin.tar.gz", sep="")
+path <- paste(homePath, "/daimojo_2.5.8_x86_64-darwin.tar.gz", sep="")
 install.packages(path, repos = NULL, type="source")
 
 ```
@@ -298,7 +303,7 @@ predict(m, d)
 
 This classification output is the batch scoring done for our Hydraulic System cooling condition. You should receive classification probabilities for cool_cond_y.3, cool_cond_y.20, and cool_cond_y.100. The 3 means the Hydraulic cooler is close to operating at total failure, 20 means it is operating at reduced efficiency, and 100 means operating at full efficiency.
 
-The results will give you a probability (a decimal value) for cool_cond_y.3, cool_cond_y.20, and cool_cond_y.100. After converting each decimal value to a percentage, note that the highest percentage per row will determine the type of *cool_cond_y* for that row. 
+The results will give you a probability (a decimal value) for **cool_cond_y.3**, **cool_cond_y.20**, and **cool_cond_y.100**. After converting each decimal value to a percentage, note that the highest percentage per row will determine the type of **cool_cond_y** for that row. 
 
 7\. Quit the R interactive terminal:
 
@@ -306,7 +311,7 @@ The results will give you a probability (a decimal value) for cool_cond_y.3, coo
 quit()
 ```
 
-R will ask you if you want to save the workspace image; feel free to save it if you wish.
+R will ask you if you want to save the workspace image; feel free to save it if you wish too.
 
 In conclusion, that is how you execute the MOJO scoring pipeline to do batch scoring for the Hydraulic System cooling condition using the R wrapper in the C++ Runtime. 
 
