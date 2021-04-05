@@ -456,9 +456,9 @@ You should receive classification scores for cool_cond_y.3, cool_cond_y.20, cool
 
 3\. Rename Deployment Name to be **model-hydraulic-lambda**.
 
-NOTE: S3 bucket names can only be lowercase and can't have underscores. [See the naming requirements for Amazon S3 buckets](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-s3-bucket-naming-requirements.html).
+**Note**: S3 bucket names can only be lowercase and can't have underscores. [See the naming requirements for Amazon S3 buckets](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-s3-bucket-naming-requirements.html).
 
-4\. Add your **IAM Access Key ID**, **AWS Secret Access Key** and **Region**.
+4\. Add your **IAM Access Key ID**, **AWS Secret Access Key**, and **Region**.
 
 5\. Click **Deploy**.
 
@@ -468,7 +468,7 @@ NOTE: S3 bucket names can only be lowercase and can't have underscores. [See the
 
 Driverless AI will create an s3 bucket called **model-hydraulic-lambda**, save the MOJO Scoring Pipeline file in the s3 bucket, create an AWS Lambda function called **h2oai-model-hydraulic-lambda** in the us-west-1 region.
 
-**Note:** To get your IAM access key and secret key, login to your AWS IAM account, go to your Identity and Access Management (IAM) service, go to Users, search for your particular user, click it, select Security Credentials and then create access key.
+**Note:** To get your IAM access key and secret key, login to your AWS IAM account, go to your Identity and Access Management (IAM) service, go to Users, search for your particular user, click it, select Security Credentials and then create an access key.
 
 ![AWS Create IAM Access Key](./assets/aws-iam-create-access-key.jpg)
 
