@@ -1,0 +1,29 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2020-07-24T19:16:18-07:00",
+  "id": "build-your-own-custom-recipe-tutorial",
+  "duration": 0,
+  "title": "Build Your Own Custom Recipe Tutorial",
+  "summary": "Check the list",
+  "source": "/Users/sperez/Desktop/Codelabs 1.8.7.1 /build-your-own-custom-recipe-tutorial/build-your-own-custom-recipe-tutorial.md",
+  "theme": "",
+  "status": [
+    "draft"
+  ],
+  "category": [
+    "driverless"
+  ],
+  "tags": [
+    "custom",
+    "driverless",
+    "machine-learning",
+    "models",
+    "recipes",
+    "scores",
+    "transformer"
+  ],
+  "url": "build-your-own-custom-recipe-tutorial"
+}

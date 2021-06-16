@@ -1,0 +1,26 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2020-07-24T17:21:50-07:00",
+  "id": "scoring-pipeline-deployment-introduction",
+  "duration": 0,
+  "title": "Scoring Pipeline Deployment Introduction",
+  "summary": "Check the list",
+  "source": "/Users/sperez/Desktop/Codelabs 1.8.7.1 /scoring-pipeline-deployment-introduction/scoring-pipeline-deployment-introduction.md",
+  "theme": "",
+  "status": [
+    "draft"
+  ],
+  "category": [
+    "driverless"
+  ],
+  "tags": [
+    "deployment",
+    "driverless",
+    "mojo",
+    "scoring-pipeline"
+  ],
+  "url": "scoring-pipeline-deployment-introduction"
+}

@@ -1,0 +1,29 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2020-07-24T17:04:24-07:00",
+  "id": "get-started-with-open-source-custom-recipes-tutorial",
+  "duration": 0,
+  "title": "Get Started with Open Source Custom Recipes Tutorial",
+  "summary": "Check the list",
+  "source": "/Users/sperez/Desktop/Codelabs 1.8.7.1 /get-started-with-open-source-custom-recipes-tutorial/get-started-with-open-source-custom-recipes-tutorial.md",
+  "theme": "",
+  "status": [
+    "draft"
+  ],
+  "category": [
+    "driverless"
+  ],
+  "tags": [
+    "custom",
+    "driverless",
+    "machine-learning",
+    "models",
+    "recipes",
+    "scores",
+    "transformer"
+  ],
+  "url": "get-started-with-open-source-custom-recipes-tutorial"
+}
